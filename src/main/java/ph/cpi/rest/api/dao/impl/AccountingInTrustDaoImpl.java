@@ -1422,4 +1422,23 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		Integer count = sqlSession.selectOne("retrieveAgingSoaDtlCount", params);
 		return count;
 	}
+	
+	@Override
+	public List<AcknowledgementReceipt> retrieveArListChangeTrans(HashMap<String, Object> params) throws SQLException {
+		List<AcknowledgementReceipt> res = sqlSession.selectList("retrieveArListChangeTrans",params);
+		return res;
+	}
+	
+	@Override
+	public List<AcitTransactions> retrieveAcitJvListingChangeTrans(HashMap<String, Object> params) throws SQLException {
+		List<AcitTransactions> acitJVList  = sqlSession.selectList("retrieveAcitJvListingChangeTrans", params);
+		return acitJVList;
+	}
+	
+	@Override
+	public List<AcitCv> retrieveAcitCvChangeTrans(HashMap<String, Object> params) throws SQLException {
+		List<AcitCv> acitCvList  = sqlSession.selectList("retrieveAcitCvChangeTrans", params);
+		return acitCvList;
+	}
+	
 }
