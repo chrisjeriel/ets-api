@@ -152,4 +152,7 @@ public interface UtilDao {
 	public List<ACITR066J> retrieveAcitR066j(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044SB> retrievePolR044sb(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044SC> retrievePolR044sc(final HashMap<String, Object> params ) throws SQLException;
+
+	public List<POLR052L> retrievePolR052l(final HashMap<String, Object> params ) throws SQLException;
+	public List<POLR052M> retrievePolR052m(final HashMap<String, Object> params ) throws SQLException;
 }
