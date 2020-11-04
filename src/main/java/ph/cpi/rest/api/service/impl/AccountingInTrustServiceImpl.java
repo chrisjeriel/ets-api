@@ -3327,4 +3327,13 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setInvtList(acctITDao.retrieveAcitInvestmentsIncArtUtil(params));
 		return response;
 	}
+
+
+	@Override
+	public RetrieveAcitOsPolPremResponse retrieveAcitOsPolPrem(RetrieveAcitOsPolPremRequest request)
+			throws SQLException {
+		RetrieveAcitOsPolPremResponse response = new RetrieveAcitOsPolPremResponse();
+		response.setList(acctITDao.retrieveAcitOsPolPrem(request));
+		return response;
+	}
 }
