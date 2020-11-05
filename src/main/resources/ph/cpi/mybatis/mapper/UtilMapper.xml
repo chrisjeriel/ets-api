@@ -5966,7 +5966,6 @@
 					#{dateRange,jdbcType=VARCHAR}))
 	</select>
 	
-	
 	<resultMap type="ph.cpi.rest.api.model.utils.POLR052M" id="retrievePolR052mMap">
 		<result property="extractUser" 		column="EXTRACT_USER"/>
 		<result property="policyId" 		column="POLICY_ID"/>
@@ -6042,5 +6041,107 @@
 					#{extractUser,jdbcType=VARCHAR},
 					#{dateParam,jdbcType=VARCHAR},
 					#{dateRange,jdbcType=VARCHAR}))
+	</select>
+
+	<update id="extractCLMR010ZBO" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			CLMR010ZBO_PKG.extract_clmr010zbo(#{extractUser, jdbcType=VARCHAR},
+										  null,
+										  #{dateParam, jdbcType=VARCHAR},
+										  #{dateRange, jdbcType=VARCHAR},
+										  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										  #{extTypeTag, jdbcType=VARCHAR},
+										  #{lineCdParam, jdbcType=VARCHAR},
+										  #{cedingIdParam, jdbcType=VARCHAR},
+										  #{currCdParam, jdbcType=VARCHAR},
+										  #{extractCount, mode=OUT, jdbcType=INTEGER},
+										  #{forceExtract, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="extractCLMR010ZBP" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			CLMR010ZBP_PKG.extract_clmr010zbp(#{extractUser, jdbcType=VARCHAR},
+										  null,
+										  #{dateParam, jdbcType=VARCHAR},
+										  #{dateRange, jdbcType=VARCHAR},
+										  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										  #{extTypeTag, jdbcType=VARCHAR},
+										  #{lineCdParam, jdbcType=VARCHAR},
+										  #{cedingIdParam, jdbcType=VARCHAR},
+										  #{currCdParam, jdbcType=VARCHAR},
+										  #{extractCount, mode=OUT, jdbcType=INTEGER},
+										  #{forceExtract, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.CLMR010ZBO" id="retrieveClmR010zboMap">
+		<result property="extractUser" 		column="EXTRACT_USER"/>
+		<result property="extractDate" 		column="EXTRACT_DATE"/>
+		<result property="currencyCd" 		column="CURRENCY_CD"/>
+		<result property="lineCd" 			column="LINE_CD"/>
+		<result property="claimId" 			column="CLAIM_ID"/>
+		<result property="claimNo" 			column="CLAIM_NO"/>
+		<result property="policyId" 		column="POLICY_ID"/>
+		<result property="policyNo" 		column="POLICY_NO"/>
+		<result property="distDate" 		column="DIST_DATE"/>
+		<result property="uwYear" 			column="UW_YEAR"/>
+		<result property="tsiAmt" 			column="TSI_AMT"/>
+		<result property="trtyCedId" 		column="TRTY_CED_ID"/>
+		<result property="trtyCedIdName" 	column="TRTY_CED_ID_NAME"/>
+		<result property="clmAmtTotal" 		column="CLM_AMT_TOTAL"/>
+		<result property="clmAmtQuota" 		column="CLM_AMT_QUOTA"/>
+		<result property="clmAmtQuotaRet1" 	column="CLM_AMT_QUOTA_RET1"/>
+		<result property="clmAmtQuotaRet2" 	column="CLM_AMT_QUOTA_RET2"/>
+		<result property="clmAmt1stSurplus" column="CLM_AMT_1ST_SURPLUS"/>
+		<result property="clmAmt2ndSurplus" column="CLM_AMT_2ND_SURPLUS"/>
+		<result property="clmAmtFacul" 		column="CLM_AMT_FACUL"/>
+		<result property="siRange" 			column="SI_RANGE"/>
+		<result property="amtRangeFrom" 	column="AMT_RANGE_FROM"/>
+		<result property="amtRangeTo" 		column="AMT_RANGE_TO"/>
+		<result property="dateFrom" 		column="DATE_FROM"/>
+		<result property="dateTo" 			column="DATE_TO"/>
+	</resultMap>
+	
+	<select id="retrieveClmR010zbo" resultMap="retrieveClmR010zboMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010zbo_to_csv(
+			#{extractUser,jdbcType=VARCHAR}
+		))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.CLMR010ZBP" id="retrieveClmR010zbpMap">
+		<result property="extractUser" 		column="EXTRACT_USER"/>
+		<result property="extractDate" 		column="EXTRACT_DATE"/>
+		<result property="currencyCd" 		column="CURRENCY_CD"/>
+		<result property="lineCd" 			column="LINE_CD"/>
+		<result property="claimId" 			column="CLAIM_ID"/>
+		<result property="claimNo" 			column="CLAIM_NO"/>
+		<result property="policyId" 		column="POLICY_ID"/>
+		<result property="policyNo" 		column="POLICY_NO"/>
+		<result property="distDate" 		column="DIST_DATE"/>
+		<result property="uwYear" 			column="UW_YEAR"/>
+		<result property="tsiAmt" 			column="TSI_AMT"/>
+		<result property="trtyCedId" 		column="TRTY_CED_ID"/>
+		<result property="trtyCedIdName" 	column="TRTY_CED_ID_NAME"/>
+		<result property="clmAmtTotal" 		column="CLM_AMT_TOTAL"/>
+		<result property="clmAmtQuota" 		column="CLM_AMT_QUOTA"/>
+		<result property="clmAmtQuotaRet1" 	column="CLM_AMT_QUOTA_RET1"/>
+		<result property="clmAmtQuotaRet2" 	column="CLM_AMT_QUOTA_RET2"/>
+		<result property="clmAmt1stSurplus" column="CLM_AMT_1ST_SURPLUS"/>
+		<result property="clmAmt2ndSurplus" column="CLM_AMT_2ND_SURPLUS"/>
+		<result property="clmAmtFacul" 		column="CLM_AMT_FACUL"/>
+		<result property="siRange" 			column="SI_RANGE"/>
+		<result property="amtRangeFrom" 	column="AMT_RANGE_FROM"/>
+		<result property="amtRangeTo" 		column="AMT_RANGE_TO"/>
+		<result property="dateFrom" 		column="DATE_FROM"/>
+		<result property="dateTo" 			column="DATE_TO"/>
+	</resultMap>
+	
+	<select id="retrieveClmR010zbp" resultMap="retrieveClmR010zbpMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010zbp_to_csv(
+			#{extractUser,jdbcType=VARCHAR}
+		))
 	</select>
 </mapper>

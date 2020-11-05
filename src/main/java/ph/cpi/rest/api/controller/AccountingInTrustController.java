@@ -1059,4 +1059,26 @@ public class AccountingInTrustController {
 		logger.info("RetrieveAcitOsPolPremRequest : " + request.toString());
 		return acctInTrustService.retrieveAcitOsPolPrem(request);
 	}
+
+	@GetMapping(path="retrieveArListChangeTrans")
+	public @ResponseBody RetrieveAcitArListResponse retrieveArListChangeTrans(RetrieveAcitArListRequest raalr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveArListChangeTrans");
+		logger.info("RetrieveAcitArListRequest : " + raalr.toString());
+		return acctInTrustService.retrieveArListChangeTrans(raalr);
+	}
+	
+	@GetMapping(path="retrieveAcitJVListingChangeTrans")
+	public @ResponseBody RetrieveAcitJVListingResponse retrieveAcitJVListingChangeTrans(RetrieveAcitJVListingRequest rajl) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitJVListingChangeTrans");
+		logger.info("RetrieveAcitJVListingRequest : " + rajl.toString());
+		return acctInTrustService.retrieveAcitJVListingChangeTrans(rajl);
+	}
+	
+	@GetMapping(path="retrieveAcitCvChangeTrans")
+	public @ResponseBody RetrieveAcitCvResponse retrieveAcitCvChangeTrans(RetrieveAcitCvRequest racr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitCvChangeTrans");
+		logger.info("RetrieveAcitCvRequest : " + racr.toString());
+		return acctInTrustService.retrieveAcitCvChangeTrans(racr);
+	}
+	
 }

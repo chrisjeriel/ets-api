@@ -3328,12 +3328,74 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return response;
 	}
 
-
 	@Override
 	public RetrieveAcitOsPolPremResponse retrieveAcitOsPolPrem(RetrieveAcitOsPolPremRequest request)
 			throws SQLException {
 		RetrieveAcitOsPolPremResponse response = new RetrieveAcitOsPolPremResponse();
 		response.setList(acctITDao.retrieveAcitOsPolPrem(request));
 		return response;
+	}
+	
+	@Override
+	public RetrieveAcitArListResponse retrieveArListChangeTrans(RetrieveAcitArListRequest raalr) throws SQLException {
+		RetrieveAcitArListResponse response = new RetrieveAcitArListResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("arNo", raalr.getArNo());
+		params.put("payor", raalr.getPayor());
+		params.put("arDateFrom", raalr.getArDateFrom());
+		params.put("arDateTo", raalr.getArDateTo());
+		params.put("tranTypeName", raalr.getTranTypeName());
+		params.put("arStatus", raalr.getArStatus());
+		params.put("particulars", raalr.getParticulars());
+		params.put("arAmtFrom", raalr.getArAmtFrom());
+		params.put("arAmtTo", raalr.getArAmtTo());
+		params.put("tranStat", raalr.getTranStat());
+		params.put("arStat", raalr.getArStat());
+		response.setAr(acctITDao.retrieveArListChangeTrans(params));
+		return response;
+	}
+	
+	@Override
+	public RetrieveAcitJVListingResponse retrieveAcitJVListingChangeTrans(RetrieveAcitJVListingRequest rajl) throws SQLException {
+		RetrieveAcitJVListingResponse response = new RetrieveAcitJVListingResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", rajl.getTranId());
+		params.put("jvNo", rajl.getJvNo());
+		params.put("jvDateFrom", rajl.getJvDateFrom());
+		params.put("jvDateTo", rajl.getJvDateTo());
+		params.put("particulars", rajl.getParticulars());
+		params.put("tranTypeName", rajl.getTranTypeName());
+		params.put("refNo", rajl.getRefNo());
+		params.put("preparedBy", rajl.getPreparedBy());
+		params.put("jvAmtFrom", rajl.getJvAmtFrom());
+		params.put("jvAmtTo", rajl.getJvAmtTo());
+		params.put("tranStat", rajl.getTranStat());
+		params.put("jvStat", rajl.getJvStat());
+		
+		params.put("pagination", rajl.getPaginationRequest());
+		params.put("sort", rajl.getSortRequest());
+		
+		response.setTransactions(acctITDao.retrieveAcitJvListingChangeTrans(params));
+		return response;
+	}
+	
+	@Override
+	public RetrieveAcitCvResponse retrieveAcitCvChangeTrans(RetrieveAcitCvRequest raptp) throws SQLException {
+		RetrieveAcitCvResponse racResponse = new RetrieveAcitCvResponse();
+		HashMap<String, Object> racParams = new HashMap<String, Object>();
+		racParams.put("tranId",raptp.getTranId());
+		racParams.put("cvGenNo",raptp.getCvGenNo());
+		racParams.put("cvDateFrom",raptp.getCvDateFrom());
+		racParams.put("cvDateTo",raptp.getCvDateTo());
+		racParams.put("cvStatusDesc",raptp.getCvStatusDesc());
+		racParams.put("payee",raptp.getPayee());
+		racParams.put("particulars",raptp.getParticulars());
+		racParams.put("cvAmtFrom",raptp.getCvAmtFrom());
+		racParams.put("cvAmtTo",raptp.getCvAmtTo());
+		racParams.put("tranStat",raptp.getTranStat());
+		racParams.put("cvStat",raptp.getCvStat());
+		racResponse.setAcitCvList(acctITDao.retrieveAcitCvChangeTrans(racParams));
+		logger.info("RetrieveAcitCvResponse : " + racResponse);
+		return racResponse;
 	}
 }

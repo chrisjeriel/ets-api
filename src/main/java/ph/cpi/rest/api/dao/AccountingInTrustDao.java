@@ -303,4 +303,7 @@ public interface AccountingInTrustDao {
 	public List<AcitInvestments> retrieveAcitInvestmentsIncArtUtil(final HashMap<String, Object> params ) throws SQLException;
 	public Integer retrieveAgingSoaDtlCount(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitOsPolPrem> retrieveAcitOsPolPrem(RetrieveAcitOsPolPremRequest request);
+	public List<AcknowledgementReceipt> retrieveArListChangeTrans(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitTransactions> retrieveAcitJvListingChangeTrans(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitCv> retrieveAcitCvChangeTrans(final HashMap<String, Object> params) throws SQLException;
 }

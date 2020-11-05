@@ -908,7 +908,6 @@ public class UtilDaoImpl implements UtilDao{
 		return retrievePolR044sc;
 	}
 
-
 	@Override
 	public List<POLR052L> retrievePolR052l(HashMap<String, Object> params) throws SQLException {
 		List<POLR052L> retrievePolR052l = sqlSession.selectList("retrievePolR052l",params);
@@ -919,5 +918,17 @@ public class UtilDaoImpl implements UtilDao{
 	public List<POLR052M> retrievePolR052m(HashMap<String, Object> params) throws SQLException {
 		List<POLR052M> retrievePolR052m = sqlSession.selectList("retrievePolR052m",params);
 		return retrievePolR052m;
+	}
+	
+	@Override
+	public List<CLMR010ZBO> retrieveClmR010zbo(HashMap<String, Object> params) throws SQLException {
+		List<CLMR010ZBO> retrieveClmR010zbo = sqlSession.selectList("retrieveClmR010zbo",params);
+		return retrieveClmR010zbo;
+	}
+
+	@Override
+	public List<CLMR010ZBP> retrieveClmR010zbp(HashMap<String, Object> params) throws SQLException {
+		List<CLMR010ZBP> retrieveClmR010zbp = sqlSession.selectList("retrieveClmR010zbp",params);
+		return retrieveClmR010zbp;
 	}
 }
