@@ -689,6 +689,7 @@
 		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" column="UPDATE_USER"/>
 		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="cedingAbbr" column="CEDING_ABBR"/>
 	</resultMap>
 	
 	<select id="retrieveAcitJvList" resultMap="transactionMap" parameterType="java.util.Map">
@@ -4041,8 +4042,8 @@
 	
 	<select id="retrieveAcitSoaDue" resultMap="agingSoaDtlMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACIT_AGING_SOA_DETAILS_PKG.ret_soa_dtl_due(
-																	#{policyId, jdbcType=VARCHAR},
-																	#{instNo,jdbcType=VARCHAR},
+																	#{policyId, jdbcType=INTEGER},
+																	#{instNo,jdbcType=INTEGER},
 																	#{cedingId,jdbcType=VARCHAR},
 																	#{currCd}))
 	</select>
