@@ -60,6 +60,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJvUnappInw;
 import ph.cpi.rest.api.model.accountingintrust.AcitJvUnappliedTreaty;
 import ph.cpi.rest.api.model.accountingintrust.AcitMonthEnd;
 import ph.cpi.rest.api.model.accountingintrust.AcitMonthEndJV;
+import ph.cpi.rest.api.model.accountingintrust.AcitOsPolPrem;
 import ph.cpi.rest.api.model.accountingintrust.AcitOsQsoa;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
@@ -93,6 +94,7 @@ import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.accountingintrust.RiskMgtAlloc;
 import ph.cpi.rest.api.model.maintenance.UserId;
 import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesExtRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitOsPolPremRequest;
 
 @Component
 public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
@@ -1421,6 +1423,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public Integer retrieveAgingSoaDtlCount(HashMap<String, Object> params) throws SQLException {
 		Integer count = sqlSession.selectOne("retrieveAgingSoaDtlCount", params);
 		return count;
+	}
+
+	@Override
+	public List<AcitOsPolPrem> retrieveAcitOsPolPrem(RetrieveAcitOsPolPremRequest request) {
+		List<AcitOsPolPrem> list = sqlSession.selectList("retrieveAcitOsPolPrem", request);
+		return list;
 	}
 	
 	@Override

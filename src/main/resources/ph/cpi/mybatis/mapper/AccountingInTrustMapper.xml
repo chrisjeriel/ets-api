@@ -5978,4 +5978,23 @@
 					'', '', '',''))
 	</select>
 	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitOsPolPrem" id="AcitOsPolPremMap">
+		<result property="bookingDate" 		column="BOOKING_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="policyNo" 		column="POLICY_NO"/>
+		<result property="policyId" 		column="POLICY_ID"/>
+		<result property="instNo" 			column="INST_NO"/>
+		<result property="coRefNo" 			column="CO_REF_NO"/>
+		<result property="insured" 			column="INSURED"/>
+		<result property="currCd" 			column="CURR_CD"/>
+		<result property="premAmt" 			column="PREM_AMT"/>
+		<result property="commAmt" 			column="COMM_AMT"/>
+		<result property="vatRiComm" 		column="VAT_RI_COMM"/>
+		<result property="amtDue" 			column="AMT_DUE"/>
+	</resultMap>
+	
+	<select id="retrieveAcitOsPolPrem" resultMap="AcitOsPolPremMap">
+		SELECT * FROM TABLE(ACIT_OS_POL_PREM_PKG.ret_acit_os_pol_prem(#{cedingId, jdbcType=VARCHAR},
+																		CAST(to_timestamp(#{from, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																		CAST(to_timestamp(#{to, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)))
+	</select> 
 </mapper>

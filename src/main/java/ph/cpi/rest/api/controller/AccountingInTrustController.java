@@ -1053,6 +1053,13 @@ public class AccountingInTrustController {
 		return acctInTrustService.retrieveAcitInvestmentsIncArtUtil(tranId);
 	}
 	
+	@GetMapping(path="retrieveAcitOsPolPrem")
+	public @ResponseBody RetrieveAcitOsPolPremResponse retrieveAcitOsPolPrem(RetrieveAcitOsPolPremRequest request) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitOsPolPrem");
+		logger.info("RetrieveAcitOsPolPremRequest : " + request.toString());
+		return acctInTrustService.retrieveAcitOsPolPrem(request);
+	}
+
 	@GetMapping(path="retrieveArListChangeTrans")
 	public @ResponseBody RetrieveAcitArListResponse retrieveArListChangeTrans(RetrieveAcitArListRequest raalr) throws SQLException {
 		logger.info("GET: /api/acct-in-trust-service/retrieveArListChangeTrans");
