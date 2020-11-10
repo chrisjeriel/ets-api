@@ -161,4 +161,5 @@ public interface AccountingInTrustService {
 	public RetrieveAcitArListResponse retrieveArListChangeTrans(RetrieveAcitArListRequest raalr) throws SQLException;
 	public RetrieveAcitJVListingResponse retrieveAcitJVListingChangeTrans(RetrieveAcitJVListingRequest rajl ) throws SQLException;
 	public RetrieveAcitCvResponse retrieveAcitCvChangeTrans(RetrieveAcitCvRequest raptp ) throws SQLException;
+	public RetrieveAcitPremColResponse retrieveAcitPremCol(RetrieveAcitPremColRequest request) throws SQLException;
 }

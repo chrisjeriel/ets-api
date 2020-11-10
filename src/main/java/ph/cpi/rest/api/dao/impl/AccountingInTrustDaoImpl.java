@@ -63,6 +63,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitMonthEndJV;
 import ph.cpi.rest.api.model.accountingintrust.AcitOsPolPrem;
 import ph.cpi.rest.api.model.accountingintrust.AcitOsQsoa;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
+import ph.cpi.rest.api.model.accountingintrust.AcitPremCol;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm;
 import ph.cpi.rest.api.model.accountingintrust.AcitPrqInwPol;
@@ -95,6 +96,7 @@ import ph.cpi.rest.api.model.accountingintrust.RiskMgtAlloc;
 import ph.cpi.rest.api.model.maintenance.UserId;
 import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesExtRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitOsPolPremRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitPremColRequest;
 
 @Component
 public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
@@ -1447,6 +1449,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public List<AcitCv> retrieveAcitCvChangeTrans(HashMap<String, Object> params) throws SQLException {
 		List<AcitCv> acitCvList  = sqlSession.selectList("retrieveAcitCvChangeTrans", params);
 		return acitCvList;
+	}
+
+	@Override
+	public List<AcitPremCol> retrieveAcitPremCol(RetrieveAcitPremColRequest params) throws SQLException {
+		List<AcitPremCol> list = sqlSession.selectList("retrieveAcitPremCol", params);
+		return list;
 	}
 	
 }

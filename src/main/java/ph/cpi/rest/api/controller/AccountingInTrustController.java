@@ -1081,4 +1081,10 @@ public class AccountingInTrustController {
 		return acctInTrustService.retrieveAcitCvChangeTrans(racr);
 	}
 	
+	@GetMapping(path="retrieveAcitPremCol")
+	public @ResponseBody RetrieveAcitPremColResponse retrieveAcitPremCol(RetrieveAcitPremColRequest request) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitPremCol");
+		logger.info("RetrieveAcitPremColRequest : " + request.toString());
+		return acctInTrustService.retrieveAcitPremCol(request);
+	}
 }

@@ -3888,7 +3888,10 @@
 												  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  #{extractCount, mode=OUT, jdbcType=INTEGER},
 												  #{forceExtract, jdbcType=VARCHAR},
-												  #{currCdParam, jdbcType=VARCHAR});
+												  #{currCdParam, jdbcType=VARCHAR},
+												  #{lineCdParam, jdbcType=VARCHAR},
+												  #{cedingIdParam, jdbcType=VARCHAR}
+												  );
 		END;
 	</update>
 	
