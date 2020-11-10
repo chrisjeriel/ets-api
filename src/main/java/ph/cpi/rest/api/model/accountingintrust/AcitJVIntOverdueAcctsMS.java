@@ -29,6 +29,7 @@ public class AcitJVIntOverdueAcctsMS {
 	  private DateTime createDate;
 	  private String updateUser;
 	  private DateTime updateDate;
+	  private String cedingAbbr;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -173,6 +174,12 @@ public class AcitJVIntOverdueAcctsMS {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getCedingAbbr() {
+		return cedingAbbr;
+	}
+	public void setCedingAbbr(String cedingAbbr) {
+		this.cedingAbbr = cedingAbbr;
+	}
 	@Override
 	public String toString() {
 		return "AcitJVIntOverdueAcctsMS [tranId=" + tranId + ", itemNo=" + itemNo + ", cedingId=" + cedingId
@@ -182,7 +189,7 @@ public class AcitJVIntOverdueAcctsMS {
 				+ ", interestRate=" + interestRate + ", autoTag=" + autoTag + ", currCd=" + currCd + ", currRate="
 				+ currRate + ", balanceAmt=" + balanceAmt + ", overdueInt=" + overdueInt + ", localAmt=" + localAmt
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", cedingAbbr=" + cedingAbbr + "]";
 	}
 	
 	
