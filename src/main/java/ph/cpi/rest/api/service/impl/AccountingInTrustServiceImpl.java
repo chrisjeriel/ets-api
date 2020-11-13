@@ -3398,4 +3398,12 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		logger.info("RetrieveAcitCvResponse : " + racResponse);
 		return racResponse;
 	}
+
+
+	@Override
+	public RetrieveAcitPremColResponse retrieveAcitPremCol(RetrieveAcitPremColRequest request) throws SQLException {
+		RetrieveAcitPremColResponse response = new RetrieveAcitPremColResponse();
+		response.setList(acctITDao.retrieveAcitPremCol(request));
+		return response;
+	}
 }
