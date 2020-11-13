@@ -6028,4 +6028,36 @@
 																		CAST(to_timestamp(#{from, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 																		CAST(to_timestamp(#{to, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)))
 	</select> 
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetailsLOV" id="agingSoaDtlLOVMap">
+		<result property="policyId"                     column="POLICY_ID"/>
+		<result property="policyNo"                     column="POLICY_NO"/>
+		<result property="coRefNo"                      column="CO_REF_NO"/>
+		<result property="instNo"                       column="INST_NO"/>
+		<result property="cumPayment"               	column="PREV_CUM_PAYMENT"/>
+		<result property="prevBalance"                  column="PREV_BALANCE"/>
+		<result property="totalPayments"                column="TOTAL_PAYMENTS"/>
+		<result property="dueDate"                      column="DUE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="netDue"                       column="NET_DUE"/>
+		<result property="processing"                   column="PROCESSING"/>
+		<result property="memoNo"                       column="MEMO_NO"/>
+		<result property="insuredDesc"                  column="INSURED_DESC"/>
+	</resultMap>
+	
+	<select id="retrieveAgingSoaDtlLOV" resultMap="agingSoaDtlLOVMap">
+		SELECT * FROM TABLE(ACIT_AGING_SOA_DETAILS_PKG.ret_soa_dtl_lov2(
+																	#{policyId, jdbcType=VARCHAR},
+																	#{instNo,jdbcType=VARCHAR},
+																	#{cedingId,jdbcType=VARCHAR},
+																	#{payeeNo, jdbcType=VARCHAR},
+																	#{zeroBal, jdbcType=INTEGER},
+																	#{currCd},
+																	#{from, jdbcType=VARCHAR},
+																	#{exclude, jdbcType=VARCHAR},
+																	#{lovParam, jdbcType=VARCHAR},
+																	#{page.position, jdbcType=VARCHAR},
+																	#{page.count, jdbcType=VARCHAR},
+																	#{sort.sortKey, jdbcType=VARCHAR},
+																	#{sort.order, jdbcType=VARCHAR}))
+	</select>
 </mapper>
