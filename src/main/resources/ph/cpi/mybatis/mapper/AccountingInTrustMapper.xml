@@ -1810,7 +1810,9 @@
 					#{save.updateUser},
 					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					#{save.totalInterestAmt},
-					#{save.totalWhtaxAmt}
+					#{save.totalWhtaxAmt},
+					#{save.interestRt},
+					#{save.whtaxRt}
 				);
 			</foreach>
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
