@@ -17,6 +17,10 @@ public class RetrieveAcctPrqServFeeRequest {
 	private String currCd;
 	private Double currRt;
 	private String updateUser;
+	private Integer pwMmFrom;
+	private Integer pwYearFrom;
+	private Integer pwMmTo;
+	private Integer pwYearTo;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
@@ -77,6 +81,30 @@ public class RetrieveAcctPrqServFeeRequest {
 	public String getUpdateUser() {
 		return updateUser;
 	}
+	public Integer getPwMmFrom() {
+		return pwMmFrom;
+	}
+	public void setPwMmFrom(Integer pwMmFrom) {
+		this.pwMmFrom = pwMmFrom;
+	}
+	public Integer getPwYearFrom() {
+		return pwYearFrom;
+	}
+	public void setPwYearFrom(Integer pwYearFrom) {
+		this.pwYearFrom = pwYearFrom;
+	}
+	public Integer getPwMmTo() {
+		return pwMmTo;
+	}
+	public void setPwMmTo(Integer pwMmTo) {
+		this.pwMmTo = pwMmTo;
+	}
+	public Integer getPwYearTo() {
+		return pwYearTo;
+	}
+	public void setPwYearTo(Integer pwYearTo) {
+		this.pwYearTo = pwYearTo;
+	}
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
@@ -96,7 +124,8 @@ public class RetrieveAcctPrqServFeeRequest {
 	public String toString() {
 		return "RetrieveAcctPrqServFeeRequest [force=" + force + ", retType=" + retType + ", reqId=" + reqId
 				+ ", quarter=" + quarter + ", year=" + year + ", groupId=" + groupId + ", servFeeAmt=" + servFeeAmt
-				+ ", currCd=" + currCd + ", currRt=" + currRt + ", updateUser=" + updateUser + ", paginationRequest="
-				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
+				+ ", currCd=" + currCd + ", currRt=" + currRt + ", updateUser=" + updateUser + ", pwMmFrom=" + pwMmFrom
+				+ ", pwYearFrom=" + pwYearFrom + ", pwMmTo=" + pwMmTo + ", pwYearTo=" + pwYearTo
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 }

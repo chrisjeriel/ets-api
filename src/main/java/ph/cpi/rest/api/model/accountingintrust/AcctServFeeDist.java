@@ -46,6 +46,8 @@ public class AcctServFeeDist {
 	private BigDecimal grossShrAmt3;
 	private BigDecimal grossShrAmt4;
 	private BigDecimal netSfee;
+	private DateTime refFromDate;
+	private DateTime refToDate;
 	
 	private AcctServFeeTotals servFeeTotals;
 	
@@ -283,6 +285,18 @@ public class AcctServFeeDist {
 	public void setServFeeTotals(AcctServFeeTotals servFeeTotals) {
 		this.servFeeTotals = servFeeTotals;
 	}
+	public DateTime getRefFromDate() {
+		return refFromDate;
+	}
+	public void setRefFromDate(DateTime refFromDate) {
+		this.refFromDate = refFromDate;
+	}
+	public DateTime getRefToDate() {
+		return refToDate;
+	}
+	public void setRefToDate(DateTime refToDate) {
+		this.refToDate = refToDate;
+	}
 	@Override
 	public String toString() {
 		return "AcctServFeeDist [reqId=" + reqId + ", sfeeQtr=" + sfeeQtr + ", sfeeYear=" + sfeeYear + ", groupId="
@@ -296,6 +310,7 @@ public class AcctServFeeDist {
 				+ ", baseShrAmt=" + baseShrAmt + ", netDueLocal=" + netDueLocal + ", sfeeAmt=" + sfeeAmt + ", vatAmt="
 				+ vatAmt + ", whtaxAmt=" + whtaxAmt + ", netDue=" + netDue + ", invoiceId=" + invoiceId
 				+ ", grossShrAmt1=" + grossShrAmt1 + ", grossShrAmt2=" + grossShrAmt2 + ", grossShrAmt3=" + grossShrAmt3
-				+ ", grossShrAmt4=" + grossShrAmt4 + ", netSfee=" + netSfee + ", servFeeTotals=" + servFeeTotals + "]";
+				+ ", grossShrAmt4=" + grossShrAmt4 + ", netSfee=" + netSfee + ", refFromDate=" + refFromDate
+				+ ", refToDate=" + refToDate + ", servFeeTotals=" + servFeeTotals + "]";
 	}
 }

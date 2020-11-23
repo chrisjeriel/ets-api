@@ -1023,6 +1023,10 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		rasfmParams.put("servFeeAmt", rasfr.getServFeeAmt());
 		rasfmParams.put("currCd", rasfr.getCurrCd());
 		rasfmParams.put("currRt", rasfr.getCurrRt());
+		rasfmParams.put("pwMmFrom", rasfr.getPwMmFrom());
+		rasfmParams.put("pwYearFrom", rasfr.getPwYearFrom());
+		rasfmParams.put("pwMmTo", rasfr.getPwMmTo());
+		rasfmParams.put("pwYearTo", rasfr.getPwYearTo());
 		
 		if(rasfr.getRetType().equals("generate")) {
 			HashMap<String, Object> res = acctITDao.validateServfee(rasfmParams);
@@ -1538,6 +1542,11 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("createDate", sapsfr.getCreateDate());
 		params.put("updateUser", sapsfr.getUpdateUser());
 		params.put("updateDate", sapsfr.getUpdateDate());
+		params.put("pwMmFrom", sapsfr.getPwMmFrom());
+		params.put("pwYearFrom", sapsfr.getPwYearFrom());
+		params.put("pwMmTo", sapsfr.getPwMmTo());
+		params.put("pwYearTo", sapsfr.getPwYearTo());
+		params.put("saveAcctServFeeCedantList", sapsfr.getSaveAcctServFeeCedantList());
 		
 		try {
 			response.setReturnCode(acctITDao.saveAcctPrqServFee(params));

@@ -1972,6 +1972,8 @@
 		<result property="grossShrAmt3"		column="GROSS_SHR_AMT3"/>
 		<result property="grossShrAmt4"		column="GROSS_SHR_AMT4"/>
 		<result property="netSfee"			column="NET_SFEE"/>
+		<result property="refFromDate" 		column="REF_FROM_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="refToDate" 		column="REF_TO_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		
 		<association property="servFeeTotals" resultMap="servFeeTotalsMap"></association>
 	</resultMap>
@@ -1991,6 +1993,10 @@
 																			 #{servFeeAmt, jdbcType=INTEGER},
 																			 #{currCd, jdbcType=VARCHAR},
 																			 #{currRt, jdbcType=INTEGER},
+																			 #{pwMmFrom},
+																			 #{pwYearFrom},
+																			 #{pwMmTo},
+																			 #{pwYearTo},
 																			 null,null,null,null))
 	</select>
 	
@@ -2941,6 +2947,10 @@
 																		   #{servFeeAmt, jdbcType=INTEGER},
 																		   #{currCd, jdbcType=VARCHAR},
 																		   #{currRt, jdbcType=INTEGER},
+																		   #{pwMmFrom},
+																		   #{pwYearFrom},
+																		   #{pwMmTo},
+																		   #{pwYearTo},
 																		   null,null,null,null))
 	</select>
 	
@@ -3235,8 +3245,24 @@
 				#{createUser, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{updateUser, jdbcType=VARCHAR},
-				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{pwMmFrom},
+				#{pwYearFrom},
+				#{pwMmTo},
+				#{pwYearTo}
 			);
+			
+			<foreach collection="saveAcctServFeeCedantList" item="save">
+				ACCT_SERVFEE_DTL_DIST_PKG.save_servfee_cedant(
+					#{reqId, jdbcType=INTEGER},
+					#{save.cedingId, jdbcType=VARCHAR},
+					#{save.netSfee, jdbcType=INTEGER},
+					#{save.vatAmt, jdbcType=INTEGER},
+					#{save.whtaxAmt, jdbcType=INTEGER},
+					#{save.netDue, jdbcType=INTEGER},
+					#{updateUser, jdbcType=VARCHAR}
+				);
+			</foreach>
 		END;
 	</update>
 
