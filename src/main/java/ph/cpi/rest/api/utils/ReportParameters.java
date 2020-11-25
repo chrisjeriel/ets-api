@@ -13,6 +13,7 @@ import ph.cpi.rest.api.model.utils.ACITR061;
 import ph.cpi.rest.api.model.utils.ACITR066;
 import ph.cpi.rest.api.model.utils.ACSER007;
 import ph.cpi.rest.api.model.utils.ACSER008;
+import ph.cpi.rest.api.model.utils.ACSER009;
 import ph.cpi.rest.api.model.utils.ACSER024;
 import ph.cpi.rest.api.model.utils.ACSER060;
 import ph.cpi.rest.api.model.utils.CLMR010;
@@ -456,6 +457,19 @@ public class ReportParameters {
 		ACSER009Params.put("currCdParam", param.getCurrCdParam());
 		ACSER009Params.put("forceExtract", param.getForceExtract());
 		ACSER009Params.put("extractUser", param.getExtractUser());
+		ACSER009Params.put("reportId", param.getReportId());
+		ACSER009Params.put("reportName", param.getReportName());
+		return ACSER009Params;
+	}
+	
+	public static HashMap<String, Object> mapACSER009Params(ACSER009 param) {
+		HashMap<String, Object> ACSER009Params = new HashMap<String, Object>();
+		ACSER009Params.put("periodFrom", param.getPeriodFrom());
+		ACSER009Params.put("periodTo", param.getPeriodTo());
+		ACSER009Params.put("taxType", param.getTaxType());
+		ACSER009Params.put("forceExtract", param.getForceExtract());
+		ACSER009Params.put("extractUser", param.getExtractUser());
+		ACSER009Params.put("extractDate", param.getExtractDate());
 		ACSER009Params.put("reportId", param.getReportId());
 		ACSER009Params.put("reportName", param.getReportName());
 		return ACSER009Params;

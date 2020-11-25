@@ -85,6 +85,8 @@ public class UtilServiceImpl implements UtilService {
 				params = ReportParameters.mapACITR059Params(grr.getAcitr059Params());
 			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("ACSER008")) {
 				params = ReportParameters.mapACSER008Params(grr.getAcser008Params());
+			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("ACSER009")) {
+				params = ReportParameters.mapACSER009Params(grr.getAcser009Params());
 			}
 			
 			params.put("extractCount", 0);
@@ -237,6 +239,7 @@ public class UtilServiceImpl implements UtilService {
 		retcParams.put("dateParam", racprlp.getDateParam());
 		retcParams.put("dateRange", racprlp.getDateRange());
 		retcParams.put("reportType", racprlp.getReportType());
+		retcParams.put("taxType", racprlp.getTaxType());
 		
 		String reportName = racprlp.getReportName();
 		System.out.println(reportName);
@@ -533,6 +536,8 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListClmr010zbo(utilDao.retrieveClmR010zbo(retcParams));
 		} else if(reportName.equals("CLMR010ZBP")) {
 			retcResponse.setListClmr010zbp(utilDao.retrieveClmR010zbp(retcParams));
+		} else if(reportName.equals("ACSER009")) {
+			retcResponse.setListAcser009(utilDao.retrieveAcseR009(retcParams));
 		}
 		
 		else {

@@ -931,4 +931,10 @@ public class UtilDaoImpl implements UtilDao{
 		List<CLMR010ZBP> retrieveClmR010zbp = sqlSession.selectList("retrieveClmR010zbp",params);
 		return retrieveClmR010zbp;
 	}
+	
+	@Override
+	public List<ACSER009> retrieveAcseR009(HashMap<String, Object> params) throws SQLException {
+		List<ACSER009> retrieveAcseR009 = sqlSession.selectList("retrieveAcseR009",params);
+		return retrieveAcseR009;
+	}
 }

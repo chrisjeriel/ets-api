@@ -6147,4 +6147,48 @@
 			#{extractUser,jdbcType=VARCHAR}
 		))
 	</select>
+	
+	<update id="extractACSER009" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			EXTRACT_BIR_TAXES_PKG.ext_bir_taxes(
+				#{extractUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{extractDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{taxType, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{periodFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD') AS DATE),
+				CAST(to_timestamp(#{periodTo, jdbcType=VARCHAR}, 'YYYY-MM-DD') AS DATE)
+			);
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.ACSER009" id="retrieveAcseR009Map">
+    	<result property="tranId" 			column="TRAN_ID"/>
+		<result property="tranNo" 			column="TRAN_NO"/>
+		<result property="tranDate" 		column="TRAN_DATE"/>
+		<result property="tranStat" 		column="TRAN_STAT"/>
+		<result property="status" 			column="STATUS"/>
+		<result property="payeeClassCd" 	column="PAYEE_CLASS_CD"/>
+		<result property="payeeCd" 			column="PAYEE_CD"/>
+		<result property="payeeName" 		column="PAYEE_NAME"/>
+		<result property="bussTypeCd" 		column="BUSS_TYPE_CD"/>
+		<result property="bussTypeName" 	column="BUSS_TYPE_NAME"/>
+		<result property="tin" 				column="TIN"/>
+		<result property="mailAddress" 		column="MAIL_ADDRESS"/>
+		<result property="baseAmt" 			column="BASE_AMT"/>
+		<result property="taxAmt" 			column="TAX_AMT"/>
+		<result property="taxCd" 			column="TAX_CD"/>
+		<result property="rate" 			column="RATE"/>
+		<result property="extractUser" 		column="EXTRACT_USER"/>
+		<result property="extractDate" 		column="EXTRACT_DATE"/>
+		<result property="paramFromDate" 	column="PARAM_FROM_DATE"/>
+		<result property="paramToDate" 		column="PARAM_TO_DATE"/>
+    </resultMap>
+    
+    <select id="retrieveAcseR009" resultMap="retrieveAcseR009Map" parameterType="java.util.Map">
+        SELECT * FROM TABLE(EXTRACT_BIR_TAXES_PKG.ret_acser009_to_csv(
+        	#{extractUser,jdbcType=VARCHAR},
+        	#{reportType, jdbcType=VARCHAR},
+        	#{taxType, jdbcType=VARCHAR}
+        ))
+    </select>
+	
 </mapper>
