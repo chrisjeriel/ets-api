@@ -2025,6 +2025,7 @@
 			);
 			</foreach>
 			QUOTE_ITEM_PKG.renumber_QUOTE_itm(#{quoteId},#{projId});
+			QUOTE_ITEM_PKG.update_int_comp(#{quoteId});
 		END;
 	</update>
 	
