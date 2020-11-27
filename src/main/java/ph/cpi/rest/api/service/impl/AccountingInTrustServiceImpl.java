@@ -692,9 +692,9 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("page", raasdr.getPaginationRequest());
 		params.put("sort", raasdr.getSortRequest());
 		response.setSoaDtlList(acctITDao.retrieveAgingSoaDtl(params));
-		if(raasdr.getPaginationRequest() != null) {
-			response.setCount(acctITDao.retrieveAgingSoaDtlCount(params));
-		}
+//		if(raasdr.getPaginationRequest() != null) {
+//			response.setCount(acctITDao.retrieveAgingSoaDtlCount(params));
+//		}
 		return response;
 	}
 	
