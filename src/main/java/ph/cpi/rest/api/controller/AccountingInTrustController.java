@@ -1087,4 +1087,11 @@ public class AccountingInTrustController {
 		logger.info("RetrieveAcitPremColRequest : " + request.toString());
 		return acctInTrustService.retrieveAcitPremCol(request);
 	}
+	
+	@GetMapping(path="retrieveAcitAgingSoaDtlLOV")
+	public @ResponseBody RetrieveAcitAgingSoaDtlLOVResponse retrieveAcitAgingSoaDtlLOV(RetrieveAcitAgingSoaDtlRequest ragsdr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitAgingSoaDtl");
+		logger.info("RetrieveAcitAgingSoaDtlLOVRequest : " + ragsdr.toString());
+		return acctInTrustService.retrieveAgingSoaDtlLOV(ragsdr);
+	}
 }

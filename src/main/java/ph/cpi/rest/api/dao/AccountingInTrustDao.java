@@ -61,6 +61,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm;
 import ph.cpi.rest.api.model.accountingintrust.AcitPrqInwPol;
 import ph.cpi.rest.api.model.accountingintrust.AcitPrqTrans;
 import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails;
+import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetailsLOV;
 import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
 import ph.cpi.rest.api.model.accountingintrust.AcitTrialBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerLine;
@@ -309,4 +310,5 @@ public interface AccountingInTrustDao {
 	public List<AcitTransactions> retrieveAcitJvListingChangeTrans(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitCv> retrieveAcitCvChangeTrans(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitPremCol> retrieveAcitPremCol(RetrieveAcitPremColRequest params) throws SQLException;
+	public List<AcitSOAAgingDetailsLOV> retrieveAgingSoaDtlLOV(HashMap<String, Object> params) throws SQLException;
 }
