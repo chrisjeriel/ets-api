@@ -94,6 +94,7 @@ import ph.cpi.rest.api.model.accountingintrust.QSOAPrint;
 import ph.cpi.rest.api.model.accountingintrust.QSOARemittance;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.accountingintrust.RiskMgtAlloc;
+import ph.cpi.rest.api.model.accountingintrust.UnappColInquiry;
 import ph.cpi.rest.api.model.maintenance.UserId;
 import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesExtRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitOsPolPremRequest;
@@ -1461,6 +1462,18 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	@Override
 	public List<AcitSOAAgingDetailsLOV> retrieveAgingSoaDtlLOV(HashMap<String, Object> params) throws SQLException {
 		List<AcitSOAAgingDetailsLOV> list = sqlSession.selectList("retrieveAgingSoaDtlLOV", params);
+		return list;
+	}
+
+	@Override
+	public List<UnappColInquiry> retUnappliedColList(HashMap<String, Object> params) {
+		List<UnappColInquiry> list = sqlSession.selectList("retUnappliedColList", params);
+		return list;
+	}
+
+	@Override
+	public List<UnappColInquiry> retUnappliedColRealignmentList(HashMap<String, Object> params) {
+		List<UnappColInquiry> list = sqlSession.selectList("retUnappliedColRealignmentList", params);
 		return list;
 	}
 	

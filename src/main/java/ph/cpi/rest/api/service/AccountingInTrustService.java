@@ -163,4 +163,5 @@ public interface AccountingInTrustService {
 	public RetrieveAcitCvResponse retrieveAcitCvChangeTrans(RetrieveAcitCvRequest raptp ) throws SQLException;
 	public RetrieveAcitPremColResponse retrieveAcitPremCol(RetrieveAcitPremColRequest request) throws SQLException;
 	public RetrieveAcitAgingSoaDtlLOVResponse retrieveAgingSoaDtlLOV(RetrieveAcitAgingSoaDtlRequest ragsdr) throws SQLException;
+	public RetrieveAcitUnappColInquiryResponse retrieveAcitUnappColInquiry(RetrieveAcitUnappColInquiryRequest request) throws SQLException;
 }

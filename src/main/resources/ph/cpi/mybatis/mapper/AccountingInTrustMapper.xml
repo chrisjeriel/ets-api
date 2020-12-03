@@ -740,7 +740,7 @@
 												  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  #{tranIdJv,jdbcType=VARCHAR}, #{jvYear,jdbcType=VARCHAR},
 												  #{jvNo,jdbcType=VARCHAR}, CAST(to_timestamp(#{jvDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{jvStatus}, #{jvTranTypeCd}, 
-												  #{autoTag}, #{adjEntryTag}, #{refnoTranId,jdbcType=INTEGER}, CAST(to_timestamp(#{refnoDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+												  #{autoTag}, #{adjEntryTag, jdbcType=VARCHAR}, #{refnoTranId,jdbcType=INTEGER}, CAST(to_timestamp(#{refnoDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 												  #{particulars}, #{currCd}, #{currRate}, #{jvAmt}, #{localAmt}, #{allocTag,jdbcType=VARCHAR}, #{allocTranId,jdbcType=VARCHAR}, 
 												  #{preparedBy,jdbcType=VARCHAR}, 
 												  CAST(to_timestamp(#{preparedDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{approvedBy,jdbcType=VARCHAR}, 
@@ -6088,4 +6088,50 @@
 																	#{sort.sortKey, jdbcType=VARCHAR},
 																	#{sort.order, jdbcType=VARCHAR}))
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.UnappColInquiry" id="unappColInquiryMap">
+		<result property="unappliedId" column="UNAPPLIED_ID" />
+		<result property="cedingId" column="CEDING_ID" />
+		<result property="cedingAbbr" column="CEDING_ABBR" />
+		<result property="refTranId" column="REF_TRAN_ID" />
+		<result property="tranNo" column="TRAN_NO" />
+		<result property="transdtlType" column="TRANSDTL_TYPE" />
+		<result property="transdtlName" column="TRANSDTL_NAME" />
+		<result property="itemName" column="ITEM_NAME" />
+		<result property="refNo" column="REF_NO" />
+		<result property="remarks" column="REMARKS" />
+		<result property="currCd" column="CURR_CD" />
+		<result property="currRate" column="CURR_RATE" />
+		<result property="totalUnapldAmt" column="TOTAL_UNAPLD_AMT" />
+		<result property="totalApldAmt" column="TOTAL_APLD_AMT" />
+		<result property="balUnapldAmt" column="BAL_UNAPLD_AMT" />
+		<result property="tranId" column="TRAN_ID" />
+		<result property="tranDate" column="TRAN_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="tranType" column="TRAN_TYPE" />
+		<result property="particulars" column="PARTICULARS" />
+		<result property="paytAmt" column="PAYT_AMT" />
+		<result property="localAmt" column="LOCAL_AMT" />
+		<result property="returnTag" column="RETURN_TAG" />
+		<result property="createUser" column="CREATE_USER" />
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" column="UPDATE_USER" />
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retUnappliedColList" resultMap="unappColInquiryMap">
+		SELECT *
+		  FROM TABLE(ACIT_UNAPPLIED_COLL_PKG.inqry_unapplied(
+			#{cedingId, jdbcType=VARCHAR},
+			#{currCd,jdbcType=VARCHAR}
+		))
+	</select>
+	
+	<select id="retUnappliedColRealignmentList" resultMap="unappColInquiryMap">
+		SELECT *
+		  FROM TABLE(ACIT_UNAPPLIED_COLL_PKG.inqry_unapplied_payts(
+			#{cedingId, jdbcType=VARCHAR},
+			#{currCd,jdbcType=VARCHAR}
+		))
+	</select>
+	
 </mapper>

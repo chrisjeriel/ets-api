@@ -3440,4 +3440,19 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 //		}
 		return response;
 	}
+
+
+	@Override
+	public RetrieveAcitUnappColInquiryResponse retrieveAcitUnappColInquiry(RetrieveAcitUnappColInquiryRequest request)
+			throws SQLException {
+		RetrieveAcitUnappColInquiryResponse response = new RetrieveAcitUnappColInquiryResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("cedingId", request.getCedingId());
+		params.put("currCd", request.getCurrCd());
+		
+		response.setUnappliedColList(acctITDao.retUnappliedColList(params));
+		response.setUnappliedColRealignmentList(acctITDao.retUnappliedColRealignmentList(params));
+		return response;
+	}
 }
