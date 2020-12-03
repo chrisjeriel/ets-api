@@ -1302,7 +1302,7 @@
 	</resultMap>
 	
 	<select id="retrieveAcitAgingSoaDtl" resultMap="agingSoaDtlMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACIT_AGING_SOA_DETAILS_PKG.ret_soa_dtl_lov(
+		SELECT * FROM TABLE(ACIT_AGING_SOA_DETAILS_PKG.ret_soa_dtl_lov2(
 																	#{policyId, jdbcType=VARCHAR},
 																	#{instNo,jdbcType=VARCHAR},
 																	#{cedingId,jdbcType=VARCHAR},

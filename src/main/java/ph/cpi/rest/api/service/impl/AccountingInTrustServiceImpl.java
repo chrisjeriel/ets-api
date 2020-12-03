@@ -692,9 +692,9 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("page", raasdr.getPaginationRequest());
 		params.put("sort", raasdr.getSortRequest());
 		response.setSoaDtlList(acctITDao.retrieveAgingSoaDtl(params));
-		if(raasdr.getPaginationRequest() != null) {
-			response.setCount(acctITDao.retrieveAgingSoaDtlCount(params));
-		}
+//		if(raasdr.getPaginationRequest() != null) {
+//			response.setCount(acctITDao.retrieveAgingSoaDtlCount(params));
+//		}
 		return response;
 	}
 	
@@ -3430,5 +3430,21 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 //			response.setCount(acctITDao.retrieveAgingSoaDtlCount(params));
 //		}
 		return response;
+	}
+
+
+	@Override
+	public Integer retrieveAcitAgingSoaDtlLOVLength(RetrieveAcitAgingSoaDtlRequest ragsdr) throws SQLException {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyId", ragsdr.getPolicyId());
+		params.put("instNo", ragsdr.getInstNo());
+		params.put("cedingId", ragsdr.getCedingId());
+		params.put("payeeNo", ragsdr.getPayeeNo());
+		params.put("zeroBal", ragsdr.getZeroBal());
+		params.put("currCd", ragsdr.getCurrCd());
+		params.put("from", ragsdr.getFrom());
+		params.put("exclude", StringUtils.join(ragsdr.getExclude(),','));
+		params.put("lovParam", ragsdr.getLovParam());
+		return acctITDao.retrieveAgingSoaDtlCount(params);
 	}
 }
