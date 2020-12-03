@@ -3441,7 +3441,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return response;
 	}
 
-
 	@Override
 	public RetrieveAcitUnappColInquiryResponse retrieveAcitUnappColInquiry(RetrieveAcitUnappColInquiryRequest request)
 			throws SQLException {
@@ -3454,5 +3453,20 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setUnappliedColList(acctITDao.retUnappliedColList(params));
 		response.setUnappliedColRealignmentList(acctITDao.retUnappliedColRealignmentList(params));
 		return response;
+	}
+
+	@Override
+	public Integer retrieveAcitAgingSoaDtlLOVLength(RetrieveAcitAgingSoaDtlRequest ragsdr) throws SQLException {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyId", ragsdr.getPolicyId());
+		params.put("instNo", ragsdr.getInstNo());
+		params.put("cedingId", ragsdr.getCedingId());
+		params.put("payeeNo", ragsdr.getPayeeNo());
+		params.put("zeroBal", ragsdr.getZeroBal());
+		params.put("currCd", ragsdr.getCurrCd());
+		params.put("from", ragsdr.getFrom());
+		params.put("exclude", StringUtils.join(ragsdr.getExclude(),','));
+		params.put("lovParam", ragsdr.getLovParam());
+		return acctITDao.retrieveAgingSoaDtlCount(params);
 	}
 }
