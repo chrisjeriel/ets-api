@@ -77,6 +77,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy;
 import ph.cpi.rest.api.model.accountingintrust.AcitUnappliedCollection;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.GenUPRParams;
+import ph.cpi.rest.api.model.accountingintrust.LossResDepInquiry;
 import ph.cpi.rest.api.model.accountingintrust.MultiOffsetLrd;
 import ph.cpi.rest.api.model.accountingintrust.MultiOffsetClm;
 import ph.cpi.rest.api.model.accountingintrust.MultiOffsetExisting;
@@ -1474,6 +1475,18 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	@Override
 	public List<UnappColInquiry> retUnappliedColRealignmentList(HashMap<String, Object> params) {
 		List<UnappColInquiry> list = sqlSession.selectList("retUnappliedColRealignmentList", params);
+		return list;
+	}
+
+	@Override
+	public List<LossResDepInquiry> retrieveAcitLossResDepInquiry(HashMap<String, Object> params) {
+		List<LossResDepInquiry> list = sqlSession.selectList("retrieveAcitLossResDepInquiry", params);
+		return list;
+	}
+
+	@Override
+	public List<LossResDepInquiry> retrieveAcitLossResDepInquiryPayt(HashMap<String, Object> params) {
+		List<LossResDepInquiry> list = sqlSession.selectList("retrieveAcitLossResDepInquiryPayt", params);
 		return list;
 	}
 	

@@ -3469,4 +3469,22 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("lovParam", ragsdr.getLovParam());
 		return acctITDao.retrieveAgingSoaDtlCount(params);
 	}
+
+	@Override
+	public RetrieveAcitLossResDepInquiryResponse retrieveAcitLossResDepInquiry(
+			RetrieveAcitLossResDepInquiryRequest request) throws SQLException {
+		RetrieveAcitLossResDepInquiryResponse response = new RetrieveAcitLossResDepInquiryResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("cedingId", request.getCedingId());
+		params.put("currCd", request.getCurrCd());
+		
+		if("L".contentEquals(request.getFrom())) {
+			response.setLossResDepList(acctITDao.retrieveAcitLossResDepInquiry(params));
+		} else {
+			response.setLossResDepList(acctITDao.retrieveAcitLossResDepInquiryPayt(params));
+		}
+		
+		return response;
+	}
 }

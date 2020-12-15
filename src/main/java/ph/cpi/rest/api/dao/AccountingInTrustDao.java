@@ -69,6 +69,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy;
 import ph.cpi.rest.api.model.accountingintrust.AcitUnappliedCollection;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.GenUPRParams;
+import ph.cpi.rest.api.model.accountingintrust.LossResDepInquiry;
 import ph.cpi.rest.api.model.accountingintrust.MultiOffsetLrd;
 import ph.cpi.rest.api.model.accountingintrust.MultiOffsetClm;
 import ph.cpi.rest.api.model.accountingintrust.MultiOffsetExisting;
@@ -314,4 +315,6 @@ public interface AccountingInTrustDao {
 	public List<AcitSOAAgingDetailsLOV> retrieveAgingSoaDtlLOV(HashMap<String, Object> params) throws SQLException;
 	public List<UnappColInquiry> retUnappliedColList(HashMap<String, Object> params);
 	public List<UnappColInquiry> retUnappliedColRealignmentList(HashMap<String, Object> params);
+	public List<LossResDepInquiry> retrieveAcitLossResDepInquiry(HashMap<String, Object> params);
+	public List<LossResDepInquiry> retrieveAcitLossResDepInquiryPayt(HashMap<String, Object> params);
 }

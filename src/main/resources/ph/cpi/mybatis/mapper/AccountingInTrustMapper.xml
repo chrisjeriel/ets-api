@@ -6134,4 +6134,41 @@
 		))
 	</select>
 	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.LossResDepInquiry" id="lossresdepInquiryMap">
+		<result property="cedingId" column="CEDING_ID" />
+		<result property="cedingAbbr" column="CEDING_ABBR" />
+		<result property="cedingName" column="CEDING_NAME" />
+		<result property="membershipTag" column="MEMBERSHIP_TAG" />
+		<result property="membershipDate" column="MEMBERSHIP_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="currCd" column="CURR_CD" />
+		<result property="currRate" column="CURR_RATE" />
+		<result property="lossresdep" column="LOSSRESDEP" />
+		<result property="lossresdepLocal" column="LOSSRESDEP_LOCAL" />
+		<result property="lossresdepDue" column="LOSSRESDEP_DUE" />
+		<result property="lossresdepDueLocal" column="LOSSRESDEP_DUE_LOCAL" />
+		<result property="tranId" column="TRAN_ID" />
+		<result property="tranNo" column="TRAN_NO" />
+		<result property="tranDate" column="TRAN_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="tranType" column="TRAN_TYPE" />
+		<result property="particulars" column="PARTICULARS" />
+		<result property="lossresdepPayt" column="LOSSRESDEP_PAYT" />
+		<result property="lossresdepPaytLocal" column="LOSSRESDEP_PAYT_LOCAL" />
+	</resultMap>
+	
+	<select id="retrieveAcitLossResDepInquiry" resultMap="lossresdepInquiryMap">
+		SELECT *
+		  FROM TABLE(LOSSRESDEP_PKG.ret_lossresdep(
+			#{cedingId, jdbcType=VARCHAR},
+			#{currCd,jdbcType=VARCHAR}
+		))
+	</select>
+	
+	<select id="retrieveAcitLossResDepInquiryPayt" resultMap="lossresdepInquiryMap">
+		SELECT *
+		  FROM TABLE(LOSSRESDEP_PKG.ret_paythist(
+			#{cedingId, jdbcType=VARCHAR},
+			#{currCd,jdbcType=VARCHAR}
+		))
+	</select>
+	
 </mapper>
