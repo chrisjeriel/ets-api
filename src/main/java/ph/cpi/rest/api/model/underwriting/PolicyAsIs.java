@@ -10,8 +10,22 @@ public class PolicyAsIs {
 	private String procBy;
 	private String renewalFlag;
 	private String remarks;
+	private String expiryDate;
+	private String inceptDate;
 	
 	
+	public String getExpiryDate() {
+		return expiryDate;
+	}
+	public void setExpiryDate(String expiryDate) {
+		this.expiryDate = expiryDate;
+	}
+	public String getInceptDate() {
+		return inceptDate;
+	}
+	public void setInceptDate(String inceptDate) {
+		this.inceptDate = inceptDate;
+	}
 	public String getRenewalFlag() {
 		return renewalFlag;
 	}
@@ -65,7 +79,8 @@ public class PolicyAsIs {
 	public String toString() {
 		return "PolicyAsIs [policyId=" + policyId + ", policyNo=" + policyNo + ", summaryTag=" + summaryTag
 				+ ", newPolicyId=" + newPolicyId + ", newPolicyNo=" + newPolicyNo + ", procBy=" + procBy
-				+ ", renewalFlag=" + renewalFlag + ", remarks=" + remarks + "]";
+				+ ", renewalFlag=" + renewalFlag + ", remarks=" + remarks + ", expiryDate=" + expiryDate
+				+ ", inceptDate=" + inceptDate + "]";
 	}
 	
 	
