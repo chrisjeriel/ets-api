@@ -2844,7 +2844,9 @@
 		BEGIN
 			{CALL
 				DIST_EXT_PKG.gen_ren_exp_policy(#{policyId, jdbcType=VARCHAR}, #{policyNo, mode=OUT, jdbcType=VARCHAR},#{newPolicyId, mode=OUT, jdbcType=VARCHAR}, #{newPolicyNo, mode=OUT, jdbcType=VARCHAR}, 
-												#{procBy, jdbcType=VARCHAR});
+												#{procBy, jdbcType=VARCHAR},
+												CAST(to_timestamp(#{inceptDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												CAST(to_timestamp(#{expiryDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			}	
 		END;
 	</update>
