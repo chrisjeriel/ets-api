@@ -2093,6 +2093,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			PolicyAsIs renPol = new PolicyAsIs();
 			renPol.setPolicyId(erepr.getPolicyId());
 			renPol.setProcBy(erepr.getProcBy());
+			renPol.setExpiryDate(erepr.getExpiryDate());
+			renPol.setInceptDate(erepr.getInceptDate());
 			params.put("renPol", renPol);
 			
 			resp.setRenewedPolicy((PolicyAsIs) underwritingDao.extractRenExpPolicy(params).get("renPol"));
