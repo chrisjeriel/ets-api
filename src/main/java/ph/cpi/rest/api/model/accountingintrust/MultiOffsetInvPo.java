@@ -32,6 +32,7 @@ public class MultiOffsetInvPo {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private BigDecimal balIncome;
 	
 	private BigDecimal pullInvtAmt;
 	private BigDecimal pullIncomeAmt;
@@ -196,6 +197,12 @@ public class MultiOffsetInvPo {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public BigDecimal getBalIncome() {
+		return balIncome;
+	}
+	public void setBalIncome(BigDecimal balIncome) {
+		this.balIncome = balIncome;
+	}
 	public BigDecimal getPullInvtAmt() {
 		return pullInvtAmt;
 	}
@@ -242,8 +249,8 @@ public class MultiOffsetInvPo {
 				+ ", currRate=" + currRate + ", invtAmt=" + invtAmt + ", incomeAmt=" + incomeAmt + ", bankCharge="
 				+ bankCharge + ", whtaxAmt=" + whtaxAmt + ", maturityValue=" + maturityValue + ", localAmt=" + localAmt
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", pullInvtAmt=" + pullInvtAmt + ", pullIncomeAmt=" + pullIncomeAmt
-				+ ", pullBankCharge=" + pullBankCharge + ", pullWhtaxAmt=" + pullWhtaxAmt + ", pullNetValue="
-				+ pullNetValue + ", incomeBalance=" + incomeBalance + "]";
+				+ ", updateDate=" + updateDate + ", balIncome=" + balIncome + ", pullInvtAmt=" + pullInvtAmt
+				+ ", pullIncomeAmt=" + pullIncomeAmt + ", pullBankCharge=" + pullBankCharge + ", pullWhtaxAmt="
+				+ pullWhtaxAmt + ", pullNetValue=" + pullNetValue + ", incomeBalance=" + incomeBalance + "]";
 	}
 }

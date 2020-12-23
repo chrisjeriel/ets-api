@@ -245,6 +245,7 @@
 		<result property="partialPullOutDate"			column="PARTIAL_PULLOUT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="partialPullOutAmt"		    column="PARTIAL_PULLOUT_AMT" />
 		<result property="refInvtId"		    		column="REF_INVT_ID" />
+		<result property="balIncome"		    	    column="BAL_INCOME" />
 	</resultMap>
 	
 	<select id="retrieveInvestmentList" resultMap="acitInvestmentsList" parameterType="java.util.Map">
@@ -5606,6 +5607,7 @@
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="balIncome" 		column="BAL_INCOME"/>
 		<result property="pullInvtAmt" 		column="PULL_INVT_AMT"/>
 		<result property="pullIncomeAmt" 	column="PULL_INCOME_AMT"/>
 		<result property="pullBankCharge" 	column="PULL_BANK_CHARGE"/>

@@ -45,6 +45,7 @@ public class AcitInvestments {
 	private DateTime    partialPullOutDate;
 	private BigDecimal	partialPullOutAmt;
 	private String 		refInvtId;
+	private BigDecimal balIncome;
 	
 	public String getBankName() {
 		return bankName;
@@ -284,30 +285,27 @@ public class AcitInvestments {
 	}
 	public void setCurrRate(BigDecimal currRate) {
 		this.currRate = currRate;
+	}	
+	public BigDecimal getBalIncome() {
+		return balIncome;
 	}
-	
+	public void setBalIncome(BigDecimal balIncome) {
+		this.balIncome = balIncome;
+	}
 	@Override
 	public String toString() {
-		return "AcitInvestments [invtId=" + invtId + ", invtCd=" + invtCd
-				+ ", bank=" + bank + ", bankName=" + bankName + ", certNo="
-				+ certNo + ", invtType=" + invtType + ", invtTypeDesc="
-				+ invtTypeDesc + ", invtSecDesc=" + invtSecDesc
-				+ ", invtSecCd=" + invtSecCd + ", amortized=" + amortized
-				+ ", securityDesc=" + securityDesc + ", invtStatus="
-				+ invtStatus + ", matPeriod=" + matPeriod + ", durUnit="
-				+ durUnit + ", intRt=" + intRt + ", purDate=" + purDate
-				+ ", matDate=" + matDate + ", currCd=" + currCd + ", currRate="
-				+ currRate + ", invtAmt=" + invtAmt + ", incomeAmt="
-				+ incomeAmt + ", bankCharge=" + bankCharge + ", whtaxAmt="
-				+ whtaxAmt + ", matVal=" + matVal + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + ", okDelete="
-				+ okDelete + ", slCd=" + slCd + ", preTerminatedTag="
-				+ preTerminatedTag + ", termDate=" + termDate + ", amortEff="
-				+ amortEff + ", priceCost=" + priceCost + ", processing="
-				+ processing + ", partialPullOutTag=" + partialPullOutTag
-				+ ", partialPullOutDate=" + partialPullOutDate
-				+ ", partialPullOutAmt=" + partialPullOutAmt + ", refInvtId="
-				+ refInvtId + "]";
+		return "AcitInvestments [invtId=" + invtId + ", invtCd=" + invtCd + ", bank=" + bank + ", bankName=" + bankName
+				+ ", certNo=" + certNo + ", invtType=" + invtType + ", invtTypeDesc=" + invtTypeDesc + ", invtSecDesc="
+				+ invtSecDesc + ", invtSecCd=" + invtSecCd + ", amortized=" + amortized + ", securityDesc="
+				+ securityDesc + ", invtStatus=" + invtStatus + ", matPeriod=" + matPeriod + ", durUnit=" + durUnit
+				+ ", intRt=" + intRt + ", purDate=" + purDate + ", matDate=" + matDate + ", currCd=" + currCd
+				+ ", currRate=" + currRate + ", invtAmt=" + invtAmt + ", incomeAmt=" + incomeAmt + ", bankCharge="
+				+ bankCharge + ", whtaxAmt=" + whtaxAmt + ", matVal=" + matVal + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", okDelete=" + okDelete + ", slCd=" + slCd + ", preTerminatedTag=" + preTerminatedTag + ", termDate="
+				+ termDate + ", amortEff=" + amortEff + ", priceCost=" + priceCost + ", processing=" + processing
+				+ ", partialPullOutTag=" + partialPullOutTag + ", partialPullOutDate=" + partialPullOutDate
+				+ ", partialPullOutAmt=" + partialPullOutAmt + ", refInvtId=" + refInvtId + ", balIncome=" + balIncome
+				+ "]";
 	}	
 }
