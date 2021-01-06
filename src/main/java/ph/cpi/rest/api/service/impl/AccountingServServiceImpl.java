@@ -706,7 +706,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 	        }else if(checkNo.equalsIgnoreCase("-100") && sacr.getDisbType().equals("CK")) {
 	        	sacResponse.setReturnCode(-100);
 	        }else if(checkNo.equalsIgnoreCase(sacr.getCheckNo()) || sacr.getDisbType().equals("BT")) {
-	        	sacResponse.setReturnCode(Integer.parseInt(checkNo));
+//	        	sacResponse.setReturnCode(Integer.parseInt(checkNo));
 	        	HashMap<String, Object> response = acctServDao.saveAcseCv(sacParams);
 		        sacResponse.setReturnCode((Integer) response.get("errorCode"));
 		        sacResponse.setTranIdOut((Integer) response.get("tranIdOut"));
