@@ -3,8 +3,8 @@ package ph.cpi.rest.api.model.request;
 public class GenerateMtnAcseCheckSeriesRequest {
 	private Integer bank;
 	private String bankAcct;
-	private Integer checkNoFrom;
-	private Integer checkNoTo;
+	private String checkNoFrom;
+	private String checkNoTo;
 	private String user;
 	public Integer getBank() {
 		return bank;
@@ -18,16 +18,16 @@ public class GenerateMtnAcseCheckSeriesRequest {
 	public void setBankAcct(String bankAcct) {
 		this.bankAcct = bankAcct;
 	}
-	public Integer getCheckNoFrom() {
+	public String getCheckNoFrom() {
 		return checkNoFrom;
 	}
-	public void setCheckNoFrom(Integer checkNoFrom) {
+	public void setCheckNoFrom(String checkNoFrom) {
 		this.checkNoFrom = checkNoFrom;
 	}
-	public Integer getCheckNoTo() {
+	public String getCheckNoTo() {
 		return checkNoTo;
 	}
-	public void setCheckNoTo(Integer checkNoTo) {
+	public void setCheckNoTo(String checkNoTo) {
 		this.checkNoTo = checkNoTo;
 	}
 	public String getUser() {
