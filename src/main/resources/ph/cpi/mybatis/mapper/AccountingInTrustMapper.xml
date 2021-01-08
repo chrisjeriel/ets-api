@@ -3751,6 +3751,13 @@
 		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" column="UPDATE_USER"/>
 		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="balIncome" 		column="BAL_INCOME"/>
+		<result property="pullInvtAmt" 		column="PULL_INVT_AMT"/>
+		<result property="pullIncomeAmt" 	column="PULL_INCOME_AMT"/>
+		<result property="pullBankCharge" 	column="PULL_BANK_CHARGE"/>
+		<result property="pullWhtaxAmt" 	column="PULL_WHTAX_AMT"/>
+		<result property="pullNetValue" 	column="PULL_NET_VALUE"/>
+		<result property="incomeBalance" 	column="INCOME_BALANCE"/>
 	</resultMap>
 	
 	<select id="retrieveAcitJVInvPullOut" resultMap="jvInvPullOutMap" parameterType="java.util.Map">
@@ -3789,7 +3796,13 @@
 														#{save.createUser}, 
 														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.updateUser}, 
-														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.pullInvtAmt, jdbcType=INTEGER},
+														#{save.pullIncomeAmt, jdbcType=INTEGER},
+														#{save.pullBankCharge, jdbcType=INTEGER},
+														#{save.pullWhtaxAmt, jdbcType=INTEGER},
+														#{save.pullNetValue, jdbcType=INTEGER},
+														#{save.incomeBalance, jdbcType=INTEGER}
 													  );
 					ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{save.tranId});
 			</foreach>

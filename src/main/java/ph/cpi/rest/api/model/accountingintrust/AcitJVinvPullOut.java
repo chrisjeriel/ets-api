@@ -36,6 +36,15 @@ public class AcitJVinvPullOut {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private BigDecimal balIncome;
+	
+	private BigDecimal pullInvtAmt;
+	private BigDecimal pullIncomeAmt;
+	private BigDecimal pullBankCharge;
+	private BigDecimal pullWhtaxAmt;
+	private BigDecimal pullNetValue;
+	private BigDecimal incomeBalance;
+	
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -223,6 +232,48 @@ public class AcitJVinvPullOut {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public BigDecimal getBalIncome() {
+		return balIncome;
+	}
+	public void setBalIncome(BigDecimal balIncome) {
+		this.balIncome = balIncome;
+	}
+	public BigDecimal getPullInvtAmt() {
+		return pullInvtAmt;
+	}
+	public void setPullInvtAmt(BigDecimal pullInvtAmt) {
+		this.pullInvtAmt = pullInvtAmt;
+	}
+	public BigDecimal getPullIncomeAmt() {
+		return pullIncomeAmt;
+	}
+	public void setPullIncomeAmt(BigDecimal pullIncomeAmt) {
+		this.pullIncomeAmt = pullIncomeAmt;
+	}
+	public BigDecimal getPullBankCharge() {
+		return pullBankCharge;
+	}
+	public void setPullBankCharge(BigDecimal pullBankCharge) {
+		this.pullBankCharge = pullBankCharge;
+	}
+	public BigDecimal getPullWhtaxAmt() {
+		return pullWhtaxAmt;
+	}
+	public void setPullWhtaxAmt(BigDecimal pullWhtaxAmt) {
+		this.pullWhtaxAmt = pullWhtaxAmt;
+	}
+	public BigDecimal getPullNetValue() {
+		return pullNetValue;
+	}
+	public void setPullNetValue(BigDecimal pullNetValue) {
+		this.pullNetValue = pullNetValue;
+	}
+	public BigDecimal getIncomeBalance() {
+		return incomeBalance;
+	}
+	public void setIncomeBalance(BigDecimal incomeBalance) {
+		this.incomeBalance = incomeBalance;
+	}
 	@Override
 	public String toString() {
 		return "AcitJVinvPullOut [tranId=" + tranId + ", itemNo=" + itemNo + ", invtId=" + invtId + ", invtCode="
@@ -234,7 +285,10 @@ public class AcitJVinvPullOut {
 				+ currCd + ", currRate=" + currRate + ", invtAmt=" + invtAmt + ", incomeAmt=" + incomeAmt
 				+ ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt + ", maturityValue=" + maturityValue
 				+ ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", balIncome=" + balIncome
+				+ ", pullInvtAmt=" + pullInvtAmt + ", pullIncomeAmt=" + pullIncomeAmt + ", pullBankCharge="
+				+ pullBankCharge + ", pullWhtaxAmt=" + pullWhtaxAmt + ", pullNetValue=" + pullNetValue
+				+ ", incomeBalance=" + incomeBalance + "]";
 	}
 	
 }
