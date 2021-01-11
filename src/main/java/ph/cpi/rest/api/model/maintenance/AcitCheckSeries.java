@@ -5,7 +5,7 @@ import org.joda.time.DateTime;
 public class AcitCheckSeries {
 	private Integer bank;
 	private Integer bankAcct;
-	private Integer checkNo;
+	private String checkNo;
 	private String checkPrefix;
 	private Integer tranId;
 	private String usedTag;
@@ -27,10 +27,10 @@ public class AcitCheckSeries {
 	public void setBankAcct(Integer bankAcct) {
 		this.bankAcct = bankAcct;
 	}
-	public Integer getCheckNo() {
+	public String getCheckNo() {
 		return checkNo;
 	}
-	public void setCheckNo(Integer checkNo) {
+	public void setCheckNo(String checkNo) {
 		this.checkNo = checkNo;
 	}
 	public String getCheckPrefix() {
