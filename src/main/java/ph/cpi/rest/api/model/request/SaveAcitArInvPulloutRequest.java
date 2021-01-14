@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.model.request;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class SaveAcitArInvPulloutRequest {
@@ -103,6 +104,13 @@ class SaveArInvPullout{
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private BigDecimal pullInvtAmt;
+	private BigDecimal pullIncomeAmt;
+	private BigDecimal pullBankCharge;
+	private BigDecimal pullWhtaxAmt;
+	private BigDecimal pullNetValue;
+	private BigDecimal incomeBalance;
+	
 	public String getTranId() {
 		return tranId;
 	}
@@ -205,12 +213,51 @@ class SaveArInvPullout{
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public BigDecimal getPullInvtAmt() {
+		return pullInvtAmt;
+	}
+	public void setPullInvtAmt(BigDecimal pullInvtAmt) {
+		this.pullInvtAmt = pullInvtAmt;
+	}
+	public BigDecimal getPullIncomeAmt() {
+		return pullIncomeAmt;
+	}
+	public void setPullIncomeAmt(BigDecimal pullIncomeAmt) {
+		this.pullIncomeAmt = pullIncomeAmt;
+	}
+	public BigDecimal getPullBankCharge() {
+		return pullBankCharge;
+	}
+	public void setPullBankCharge(BigDecimal pullBankCharge) {
+		this.pullBankCharge = pullBankCharge;
+	}
+	public BigDecimal getPullWhtaxAmt() {
+		return pullWhtaxAmt;
+	}
+	public void setPullWhtaxAmt(BigDecimal pullWhtaxAmt) {
+		this.pullWhtaxAmt = pullWhtaxAmt;
+	}
+	public BigDecimal getPullNetValue() {
+		return pullNetValue;
+	}
+	public void setPullNetValue(BigDecimal pullNetValue) {
+		this.pullNetValue = pullNetValue;
+	}
+	public BigDecimal getIncomeBalance() {
+		return incomeBalance;
+	}
+	public void setIncomeBalance(BigDecimal incomeBalance) {
+		this.incomeBalance = incomeBalance;
+	}
 	@Override
 	public String toString() {
 		return "SaveArInvPullout [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", invtId=" + invtId
 				+ ", pulloutType=" + pulloutType + ", currCd=" + currCd + ", currRate=" + currRate + ", invtAmt="
 				+ invtAmt + ", incomeAmt=" + incomeAmt + ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt
 				+ ", maturityValue=" + maturityValue + ", localAmt=" + localAmt + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", pullInvtAmt=" + pullInvtAmt + ", pullIncomeAmt=" + pullIncomeAmt + ", pullBankCharge="
+				+ pullBankCharge + ", pullWhtaxAmt=" + pullWhtaxAmt + ", pullNetValue=" + pullNetValue
+				+ ", incomeBalance=" + incomeBalance + "]";
 	}
 }
