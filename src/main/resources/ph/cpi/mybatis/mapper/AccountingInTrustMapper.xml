@@ -5770,7 +5770,7 @@
 	
 	<update id="updateAgingSoa" parameterType="java.util.Map">
 		BEGIN
-			UPDATE_AGING_SOA_DAYS(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			UPDATE_AGING_SOA_DAYS(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{reportId});
 		END;
 	</update>
 	

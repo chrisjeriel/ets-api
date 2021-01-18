@@ -149,7 +149,7 @@ public interface AccountingInTrustService {
 	public SaveJVMultiOffsetResponse saveJVMultiOffset(SaveJVMultiOffsetRequest request) throws SQLException;
 	public RetrieveAcitJVMultiOffsetResponse retrieveAcitJVMultiOffset(RetrieveAcitJVMultiOffsetRequest request) throws SQLException;
 	public RetrieveAcitJVCedRepLossResponse retrieveAcitJVCedRepLoss(RetrieveAcitJVCedRepLossRequest request) throws SQLException;
-	public UpdateAgingSoaReponse updateAgingSoa(String eomDate) throws SQLException;
+	public UpdateAgingSoaReponse updateAgingSoa(UpdateAgingSoaRequest request) throws SQLException;
 	public RetrieveAcitMonthEndJVResponse retrieveAcitMonthEndJV(RetrieveAcitMonthEndJVRequest ramer) throws SQLException;
 	public RetrieveAcitQsoaPrintResponse retrieveAcitQsoaPrint(RetrieveAcitQsoaPrintRequest request) throws SQLException;
 	public RetrieveAcitAcctEntriesExtResponse retrieveAcitAcctEntriesExt(RetrieveAcitAcctEntriesExtRequest request) throws SQLException;

@@ -6190,5 +6190,11 @@
         	#{taxType, jdbcType=VARCHAR}
         ))
     </select>
+    
+    <select id="retrieveAcitR066bd" resultMap="retrieveAcitR066bMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(ACITR066_CSV_PKG.acitr066bd_to_csv(
+                    CAST(to_timestamp(#{paramDate,jdbcType=DATE}, 'YYYY-MM-DD') AS DATE),
+                    #{paramCurrency,jdbcType=VARCHAR}))
+    </select>
 	
 </mapper>
