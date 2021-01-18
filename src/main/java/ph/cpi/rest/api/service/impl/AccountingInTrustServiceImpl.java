@@ -3160,10 +3160,11 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 
 
 	@Override
-	public UpdateAgingSoaReponse updateAgingSoa(String eomDate) throws SQLException {
+	public UpdateAgingSoaReponse updateAgingSoa(UpdateAgingSoaRequest request) throws SQLException {
 		UpdateAgingSoaReponse response = new UpdateAgingSoaReponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
-		params.put("eomDate", eomDate);
+		params.put("eomDate", request.getEomDate());
+		params.put("reportId", request.getReportId());
 		
 		try {
 			acctITDao.updateAgingSoa(params);

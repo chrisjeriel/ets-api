@@ -991,10 +991,10 @@ public class AccountingInTrustController {
 	}
 	
 	@PostMapping(path="updateAgingSoa")
-	public @ResponseBody UpdateAgingSoaReponse updateAgingSoa(String eomDate) throws SQLException {
+	public @ResponseBody UpdateAgingSoaReponse updateAgingSoa(@RequestBody UpdateAgingSoaRequest request) throws SQLException {
 		logger.info("POST: /api/acct-in-trust-service/updateAgingSoa");
-		logger.info("eomDate : " + eomDate);
-		return acctInTrustService.updateAgingSoa(eomDate);
+		logger.info("UpdateAgingSoaRequest : " + request);
+		return acctInTrustService.updateAgingSoa(request);
 	}
 	
 	@GetMapping(path="retrieveAcitMonthEndJV")
