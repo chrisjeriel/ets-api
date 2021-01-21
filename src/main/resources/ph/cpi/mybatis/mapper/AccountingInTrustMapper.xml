@@ -2350,7 +2350,7 @@
 					);
 				</foreach>
 				
-				SELECT NVL(SUM(CASE
+				<!-- SELECT NVL(SUM(CASE
 						            WHEN PULLOUT_TYPE = 'F' THEN MATURITY_VALUE * CURR_RATE
 						            WHEN PULLOUT_TYPE = 'I' THEN (INCOME_AMT - (BANK_CHARGE + WHTAX_AMT)) * CURR_RATE
 						        END), 0)
@@ -2367,7 +2367,7 @@
 														CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{updateUser},
 														CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
-														);
+														); -->
 				<!-- UPDATE AR PARTICULARS -->
 				ACIT_AR_INVPULLOUT_PKG.update_particulars(#{tranId},#{billId});
 				<!-- Generate to Amount Details -->
