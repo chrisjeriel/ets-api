@@ -1763,8 +1763,8 @@
 		}
 	</update>
 	
-	<select id="isCvNoAvailAcse" resultType="java.lang.String" statementType="CALLABLE">
-		SELECT PMMSC.ACSE_CHECK_VOUCHER_PKG.is_cv_no_avail FROM DUAL
+	<select id="isCvNoAvailAcse" resultType="java.lang.String" parameterType="java.util.Map" statementType="CALLABLE">
+		SELECT PMMSC.ACSE_CHECK_VOUCHER_PKG.is_cv_no_avail(CAST(to_timestamp(#{cvDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)) FROM DUAL
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcsePerDiem" id="acsePerDiemMap">
@@ -2378,8 +2378,8 @@
 																    ))
 	</select>
 	
-	<select id="checkAcseJvSeries" resultType="java.lang.String" statementType="CALLABLE">
-		SELECT ACSE_JOURNAL_VOUCHER_PKG.check_acse_jv_series FROM DUAL
+	<select id="checkAcseJvSeries" resultType="java.lang.String" parameterType="java.util.Map" statementType="CALLABLE">
+		SELECT ACSE_JOURNAL_VOUCHER_PKG.check_acse_jv_series(CAST(to_timestamp(#{jvDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)) FROM DUAL
 	</select>
 	
 	<update id="validateCopyBudgetYear" parameterType="java.util.Map" statementType="CALLABLE">

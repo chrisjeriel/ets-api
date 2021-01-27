@@ -4605,8 +4605,8 @@
 		}
 	</update>
 	
-	<select id="isCvNoAvail" resultType="java.lang.String" statementType="CALLABLE">
-		SELECT PMMSC.ACIT_CHECK_VOUCHER_PKG.is_cv_no_avail FROM DUAL
+	<select id="isCvNoAvail" resultType="java.lang.String" parameterType="java.util.Map" statementType="CALLABLE">
+		SELECT PMMSC.ACIT_CHECK_VOUCHER_PKG.is_cv_no_avail(CAST(to_timestamp(#{cvDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)) FROM DUAL
 	</select>
 	
 	<update id="validateServfee" parameterType="java.util.Map" statementType="CALLABLE">
@@ -5150,8 +5150,8 @@
 		END;
 	</update>
 	
-	<select id="checkAcitJvSeries" resultType="java.lang.String" statementType="CALLABLE">
-		SELECT ACIT_JOURNAL_VOUCHER_PKG.check_acit_jv_series FROM DUAL
+	<select id="checkAcitJvSeries" resultType="java.lang.String" parameterType="java.util.Map" statementType="CALLABLE">
+		SELECT ACIT_JOURNAL_VOUCHER_PKG.check_acit_jv_series(CAST(to_timestamp(#{jvDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)) FROM DUAL
 	</select>
 	
 	<select id="retrieveAcitJvListingLength"  parameterType="java.util.Map" resultType="java.lang.Integer">

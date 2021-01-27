@@ -477,7 +477,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			}
 			
 			if(proceed) {
-				String checkSeries = acctITDao.checkAcitJvSeries();
+				String checkSeries = acctITDao.checkAcitJvSeries(params);
 				
 				if(checkSeries.equals("Y")) {
 					System.out.println("here");
@@ -1775,7 +1775,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	        sacParams.put("swiftCd", sacr.getSwiftCd());
 
 	        String checkNo = acctITDao.validateCheckNo(sacParams);	   
-	        String isCvNoAvail =  acctITDao.isCvNoAvail();
+	        String isCvNoAvail =  acctITDao.isCvNoAvail(sacParams);
 
 	        if(isCvNoAvail.equalsIgnoreCase("N") && sacr.getTranId() == null) {
 	        	sacResponse.setReturnCode(-300);

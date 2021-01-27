@@ -384,8 +384,8 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	}
 	
 	@Override
-	public String isCvNoAvail() throws SQLException {
-		String result = sqlSession.selectOne("isCvNoAvailAcse");
+	public String isCvNoAvail(HashMap<String, Object> params) throws SQLException {
+		String result = sqlSession.selectOne("isCvNoAvailAcse", params);
 		return result;
 	}
 
@@ -647,8 +647,8 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	}
 	
 	@Override
-	public String checkAcseJvSeries() throws SQLException {
-		String result = sqlSession.selectOne("checkAcseJvSeries");
+	public String checkAcseJvSeries(HashMap<String, Object> params) throws SQLException {
+		String result = sqlSession.selectOne("checkAcseJvSeries", params);
 		return result;
 	}
 

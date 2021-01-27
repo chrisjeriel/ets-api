@@ -92,7 +92,7 @@ public interface AccountingServDao {
 	public Integer printInvoiceBatch(final HashMap<String,Object> params) throws SQLException;
 	
 	public String validateCheckNo(final HashMap<String, Object> params) throws SQLException;
-	public String isCvNoAvail() throws SQLException;
+	public String isCvNoAvail(final HashMap<String, Object> params) throws SQLException;
 	public List<AcsePerDiem> retrieveAcsePerDiem(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcsePerDiem(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseDcbCollection> retrieveAcseDcbCollection(final HashMap<String, Object> params) throws SQLException;
@@ -135,7 +135,7 @@ public interface AccountingServDao {
 	public Integer saveAcseMonthEndTBReopen(final HashMap<String, Object> params) throws SQLException;
 	public String checkEom(final HashMap<String, Object> params) throws SQLException;
 	public AcctServFeeDist retrieveOrSFeeDtlDist (final HashMap<String, Object> params) throws SQLException;
-	public String checkAcseJvSeries() throws SQLException;
+	public String checkAcseJvSeries(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> validateCopyBudgetYear(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> extractAcseExpenseBudget(final HashMap<String, Object> params) throws SQLException;
 	public List<RefNoLov> retrieveAcseRefNoLOV(final HashMap<String, Object> params) throws SQLException;

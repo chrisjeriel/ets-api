@@ -1062,8 +1062,8 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 	
 	@Override
-	public String isCvNoAvail() throws SQLException {
-		String result = sqlSession.selectOne("isCvNoAvail");
+	public String isCvNoAvail(HashMap<String, Object> params) throws SQLException {
+		String result = sqlSession.selectOne("isCvNoAvail", params);
 		return result;
 	}
 
@@ -1283,8 +1283,8 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 	
 	@Override
-	public String checkAcitJvSeries() throws SQLException {
-		String result = sqlSession.selectOne("checkAcitJvSeries");
+	public String checkAcitJvSeries(HashMap<String, Object> params) throws SQLException {
+		String result = sqlSession.selectOne("checkAcitJvSeries", params);
 		return result;
 	}
 

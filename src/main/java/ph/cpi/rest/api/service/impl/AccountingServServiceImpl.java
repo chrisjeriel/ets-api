@@ -423,7 +423,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 			params.put("updateDateJv" , request.getUpdateDateJv());
 			params.put("remarks" , request.getRemarks());
 			
-			String checkSeries = acctServDao.checkAcseJvSeries();
+			String checkSeries = acctServDao.checkAcseJvSeries(params);
 			
 			if(checkSeries.equals("Y")) {
 				HashMap<String, Object> res = acctServDao.saveJVEntry(params);
@@ -699,7 +699,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 	        sacParams.put("swiftCd", sacr.getSwiftCd());
 	        
 	        String checkNo = acctServDao.validateCheckNo(sacParams);
-	        String isCvNoAvail =  acctServDao.isCvNoAvail();
+	        String isCvNoAvail =  acctServDao.isCvNoAvail(sacParams);
 	        
 	        if(isCvNoAvail.equalsIgnoreCase("N") && sacr.getTranId() == null) {
 	        	sacResponse.setReturnCode(-300);

@@ -249,7 +249,7 @@ public interface AccountingInTrustDao {
 	public Integer updateSoaCv(final HashMap<String, Object> params) throws SQLException;
 	public AcitEditedAcctEntries retrieveAcitEditedAcctEntries (final HashMap<String, Object> params) throws SQLException;
 	public String validateCheckNo(final HashMap<String, Object> params) throws SQLException;
-	public String isCvNoAvail() throws SQLException;
+	public String isCvNoAvail(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> validateServfee(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitEomUnpostedMonth> retrieveAcctPrqServFeeMonths(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitOsQsoa> retrieveAcitOsQsoa(final HashMap<String, Object> params) throws SQLException;
@@ -282,7 +282,7 @@ public interface AccountingInTrustDao {
 	public HashMap<String,Object> saveJVInwUnappliedColl(final HashMap<String, Object> params ) throws SQLException;
 	public List<AcitJvUnappliedTreaty> retrieveTrtyUnappliedCollection(final HashMap<String, Object> params ) throws SQLException;
 	public HashMap<String,Object> saveJVTrtyUnappliedColl(final HashMap<String, Object> params ) throws SQLException;
-	public String checkAcitJvSeries() throws SQLException;
+	public String checkAcitJvSeries(final HashMap<String, Object> params) throws SQLException;
 	public Integer retrieveAcitJvListingLength(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> saveJVMultiOffset(final HashMap<String, Object> params ) throws SQLException;
 	public List<MultiOffsetIpb> retrieveMultiOffsetIpb(final HashMap<String, Object> params) throws SQLException;
