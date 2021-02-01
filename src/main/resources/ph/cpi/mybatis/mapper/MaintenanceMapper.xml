@@ -778,6 +778,9 @@
 		<result property="createDate" 		column="CREATE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="tinNo" 			column="TIN_NO"/>
+		<result property="bussTypeCd" 		column="BUSS_TYPE_CD"/>
+		<result property="bussTypeName" 	column="BUSS_TYPE_NAME"/>
      </resultMap>
      
      <select id="retMtnCedingCompanyListing" resultMap="maintenanceCedingCompanyListMap" parameterType="java.util.Map">

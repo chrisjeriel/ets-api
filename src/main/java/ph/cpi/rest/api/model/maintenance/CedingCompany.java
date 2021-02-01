@@ -38,7 +38,8 @@ public class CedingCompany {
 	
 	private String serviceFeeGrp;
 	private String serviceFeeGrpName;
-	
+	private String bussTypeCd;
+	private String bussTypeName;
 	
 	public String getServiceFeeGrp() {
 		return serviceFeeGrp;
@@ -232,6 +233,18 @@ public class CedingCompany {
 	public void setCedingHistory(List<CedingHist> cedingHistory) {
 		this.cedingHistory = cedingHistory;
 	}
+	public String getBussTypeCd() {
+		return bussTypeCd;
+	}
+	public void setBussTypeCd(String bussTypeCd) {
+		this.bussTypeCd = bussTypeCd;
+	}
+	public String getBussTypeName() {
+		return bussTypeName;
+	}
+	public void setBussTypeName(String bussTypeName) {
+		this.bussTypeName = bussTypeName;
+	}
 	@Override
 	public String toString() {
 		return "CedingCompany [cedingId=" + cedingId + ", cedingName=" + cedingName + ", cedingAbbr=" + cedingAbbr
@@ -244,6 +257,7 @@ public class CedingCompany {
 				+ withdrawTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", cedingRepresentative="
 				+ cedingRepresentative + ", cedingHistory=" + cedingHistory + ", serviceFeeGrp=" + serviceFeeGrp
-				+ ", serviceFeeGrpName=" + serviceFeeGrpName + "]";
+				+ ", serviceFeeGrpName=" + serviceFeeGrpName + ", bussTypeCd=" + bussTypeCd + ", bussTypeName="
+				+ bussTypeName + "]";
 	}
 }

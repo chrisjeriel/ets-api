@@ -5065,12 +5065,12 @@
 																  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 															      );
 				
-				ACIT_INWPOL_PAYTS_PKG.save_inwpol_payts(
+				ACIT_JV_UNAPP_INW_PKG.save_inwpol_payts(
 															#{save.tranId},
 															#{save.policyId},
 															#{save.instNo},
 															#{save.paytType, jdbcType=VARCHAR}, <!-- PAYT TYPE 1 FOR JV. CHANGE AS NECESSARY -->
-															3
+															#{save.updateUser}
 				);
 			</foreach>
 			
