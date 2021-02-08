@@ -3,7 +3,6 @@ package ph.cpi.rest.api.service;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.*;
 import ph.cpi.rest.api.model.response.*;
@@ -167,4 +166,5 @@ public interface AccountingInTrustService {
 	public RetrieveAcitUnappColInquiryResponse retrieveAcitUnappColInquiry(RetrieveAcitUnappColInquiryRequest request) throws SQLException;
 	public Integer retrieveAcitAgingSoaDtlLOVLength(RetrieveAcitAgingSoaDtlRequest ragsdr)throws SQLException;
 	public RetrieveAcitLossResDepInquiryResponse retrieveAcitLossResDepInquiry(RetrieveAcitLossResDepInquiryRequest request) throws SQLException;
+	public RetrieveAcitDataCheckScriptsResponse retrieveAcitDataCheckScripts() throws SQLException;
 }

@@ -3488,4 +3488,15 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return response;
 	}
+
+
+	@Override
+	public RetrieveAcitDataCheckScriptsResponse retrieveAcitDataCheckScripts() throws SQLException {
+		RetrieveAcitDataCheckScriptsResponse response = new RetrieveAcitDataCheckScriptsResponse();
+		
+		response.setBookingMonthList(acctITDao.retrieveDataCheckBookingMonth());
+		response.setDataCheckScriptList(acctITDao.retrieveDataCheckScripts());
+		
+		return response;
+	}
 }

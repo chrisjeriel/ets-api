@@ -6228,4 +6228,31 @@
 		))
 	</select>
 	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.BookingMonth" id="dataCheckBookingMonthMap">
+		<result property="bookingMm" column="BOOKING_MM" />
+		<result property="bookingYear" column="BOOKING_YEAR" />
+	</resultMap>
+	
+	<select id="retrieveDataCheckBookingMonth" resultMap="dataCheckBookingMonthMap">
+		SELECT *
+		  FROM TABLE(ACIT_DATA_CHECKING_PKG.ret_avail_book_date)
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.DataCheckScript" id="dataCheckScriptMap">
+		<result property="scriptNo" column="SCRIPT_NO" />
+		<result property="scriptTitle" column="SCRIPT_TITLE" />
+		<result property="scriptSoln" column="SCRIPT_SOLN" />
+		<result property="remarks" column="REMARKS" />
+		<result property="activeTag" column="ACTIVE_TAG" />
+		<result property="createUser" column="CREATE_USER" />
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" column="UPDATE_USER" />
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrieveDataCheckScripts" resultMap="dataCheckScriptMap">
+		SELECT *
+		  FROM TABLE(ACIT_DATA_CHECKING_PKG.ret_data_checking_list)
+	</select>
+	
 </mapper>

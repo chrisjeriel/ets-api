@@ -68,6 +68,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerLine;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy;
 import ph.cpi.rest.api.model.accountingintrust.AcitUnappliedCollection;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
+import ph.cpi.rest.api.model.accountingintrust.DataCheckScript;
 import ph.cpi.rest.api.model.accountingintrust.GenUPRParams;
 import ph.cpi.rest.api.model.accountingintrust.LossResDepInquiry;
 import ph.cpi.rest.api.model.accountingintrust.MultiOffsetLrd;
@@ -88,6 +89,7 @@ import ph.cpi.rest.api.model.accountingintrust.QSOARemittance;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.accountingintrust.RiskMgtAlloc;
 import ph.cpi.rest.api.model.accountingintrust.UnappColInquiry;
+import ph.cpi.rest.api.model.maintenance.BookingMonth;
 import ph.cpi.rest.api.model.maintenance.UserId;
 import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesExtRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitOsPolPremRequest;
@@ -317,4 +319,6 @@ public interface AccountingInTrustDao {
 	public List<UnappColInquiry> retUnappliedColRealignmentList(HashMap<String, Object> params);
 	public List<LossResDepInquiry> retrieveAcitLossResDepInquiry(HashMap<String, Object> params);
 	public List<LossResDepInquiry> retrieveAcitLossResDepInquiryPayt(HashMap<String, Object> params);
+	public List<BookingMonth> retrieveDataCheckBookingMonth();
+	public List<DataCheckScript> retrieveDataCheckScripts();
 }

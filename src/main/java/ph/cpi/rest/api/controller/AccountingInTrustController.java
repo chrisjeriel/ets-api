@@ -1115,4 +1115,10 @@ public class AccountingInTrustController {
 		logger.info("RetrieveAcitLossResDepInquiryRequest : " + request.toString());
 		return acctInTrustService.retrieveAcitLossResDepInquiry(request);
 	}
+	
+	@GetMapping(path="retrieveAcitDataCheckScripts")
+	public @ResponseBody RetrieveAcitDataCheckScriptsResponse retrieveAcitDataCheckScripts() throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitDataCheckScripts");
+		return acctInTrustService.retrieveAcitDataCheckScripts();
+	}
 }
