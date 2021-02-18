@@ -3499,4 +3499,28 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return response;
 	}
+
+
+	@Override
+	public ExtractDataCheckResponse extractDataCheck(ExtractDataCheckRequest request) throws SQLException {
+		ExtractDataCheckResponse response = new ExtractDataCheckResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("dataCheckScriptList", request.getDataCheckScriptList());
+		params.put("bookingMonth", request.getBookingMonth());
+		params.put("bookingYear", request.getBookingYear());
+		params.put("extractUser", request.getExtractUser());
+		params.put("force", request.getForce());
+		params.put("recordsExist", "");
+		params.put("extractedRecords", 0);
+		
+		HashMap<String, Object> res = acctITDao.extractDataCheck(params);
+		response.setRecordsExist((String) res.get("recordsExist"));
+		response.setExtractedRecords((Integer) res.get("extractedRecords"));
+		
+		if((Integer) res.get("extractedRecords") > 0) {
+			response.setDataCheckExtList(acctITDao.retrieveDataCheckExt(params));
+		}
+		
+		return response;
+	}
 }

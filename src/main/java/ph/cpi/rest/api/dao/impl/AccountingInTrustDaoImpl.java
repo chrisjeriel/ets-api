@@ -76,6 +76,8 @@ import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerLine;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy;
 import ph.cpi.rest.api.model.accountingintrust.AcitUnappliedCollection;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
+import ph.cpi.rest.api.model.accountingintrust.BookingYear;
+import ph.cpi.rest.api.model.accountingintrust.DataCheckExt;
 import ph.cpi.rest.api.model.accountingintrust.DataCheckScript;
 import ph.cpi.rest.api.model.accountingintrust.GenUPRParams;
 import ph.cpi.rest.api.model.accountingintrust.LossResDepInquiry;
@@ -97,7 +99,6 @@ import ph.cpi.rest.api.model.accountingintrust.QSOARemittance;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.accountingintrust.RiskMgtAlloc;
 import ph.cpi.rest.api.model.accountingintrust.UnappColInquiry;
-import ph.cpi.rest.api.model.maintenance.BookingMonth;
 import ph.cpi.rest.api.model.maintenance.UserId;
 import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesExtRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitOsPolPremRequest;
@@ -1493,14 +1494,26 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
-	public List<BookingMonth> retrieveDataCheckBookingMonth() {
-		List<BookingMonth> list = sqlSession.selectList("retrieveDataCheckBookingMonth");
+	public List<BookingYear> retrieveDataCheckBookingMonth() {
+		List<BookingYear> list = sqlSession.selectList("retrieveDataCheckBookingMonth");
 		return list;
 	}
 
 	@Override
 	public List<DataCheckScript> retrieveDataCheckScripts() {
 		List<DataCheckScript> list = sqlSession.selectList("retrieveDataCheckScripts");
+		return list;
+	}
+
+	@Override
+	public HashMap<String, Object> extractDataCheck(HashMap<String, Object> params) throws SQLException {
+		sqlSession.update("extractDataCheck",params);
+		return params;
+	}
+
+	@Override
+	public List<DataCheckExt> retrieveDataCheckExt(HashMap<String, Object> params) {
+		List<DataCheckExt> list = sqlSession.selectList("retrieveDataCheckExt", params);
 		return list;
 	}
 	

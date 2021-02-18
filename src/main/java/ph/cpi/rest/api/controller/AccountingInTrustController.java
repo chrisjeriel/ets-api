@@ -1121,4 +1121,11 @@ public class AccountingInTrustController {
 		logger.info("GET: /api/acct-in-trust-service/retrieveAcitDataCheckScripts");
 		return acctInTrustService.retrieveAcitDataCheckScripts();
 	}
+	
+	@PostMapping(path="extractDataCheck")
+	public @ResponseBody ExtractDataCheckResponse extractDataCheck(@RequestBody ExtractDataCheckRequest request) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/extractDataCheck");
+		logger.info("ExtractDataCheckRequest : " + request.toString());
+		return acctInTrustService.extractDataCheck(request);
+	}
 }

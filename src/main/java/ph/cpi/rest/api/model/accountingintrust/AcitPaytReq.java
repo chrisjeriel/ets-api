@@ -40,6 +40,8 @@ public class AcitPaytReq {
 	private String tranStatDesc;
 	private String refNo;
 	
+	private String serviceFeeGrp;
+	
 	public String getPaytReqNo() {
 		return paytReqNo;
 	}
@@ -238,6 +240,12 @@ public class AcitPaytReq {
 	public void setPaytReqType(String paytReqType) {
 		this.paytReqType = paytReqType;
 	}
+	public String getServiceFeeGrp() {
+		return serviceFeeGrp;
+	}
+	public void setServiceFeeGrp(String serviceFeeGrp) {
+		this.serviceFeeGrp = serviceFeeGrp;
+	}
 	@Override
 	public String toString() {
 		return "AcitPaytReq [paytReqNo=" + paytReqNo + ", reqId=" + reqId + ", reqPrefix=" + reqPrefix + ", reqYear="
@@ -249,6 +257,7 @@ public class AcitPaytReq {
 				+ preparedBy + ", preparedDate=" + preparedDate + ", requestedBy=" + requestedBy + ", approvedBy="
 				+ approvedBy + ", approvedDate=" + approvedDate + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", processing="
-				+ processing + ", tranStat=" + tranStat + ", tranStatDesc=" + tranStatDesc + ", refNo=" + refNo + "]";
+				+ processing + ", tranStat=" + tranStat + ", tranStatDesc=" + tranStatDesc + ", refNo=" + refNo
+				+ ", serviceFeeGrp=" + serviceFeeGrp + "]";
 	}
 }

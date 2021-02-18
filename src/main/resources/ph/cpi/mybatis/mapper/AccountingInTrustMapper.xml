@@ -63,6 +63,8 @@
 		<result property="tranStat" 		column="TRAN_STAT"/>
 		<result property="tranStatDesc" 	column="TRAN_STAT_DESC"/>
 		<result property="refNo" 			column="REF_NO"/>
+		
+		<result property="serviceFeeGrp"	column="SERVICE_FEE_GRP"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitPrqTrans" id="acitPrqTransMap">
@@ -6228,9 +6230,13 @@
 		))
 	</select>
 	
-	<resultMap type="ph.cpi.rest.api.model.maintenance.BookingMonth" id="dataCheckBookingMonthMap">
-		<result property="bookingMm" column="BOOKING_MM" />
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.BookingYear" id="dataCheckBookingMonthMap">
 		<result property="bookingYear" column="BOOKING_YEAR" />
+		<association property="bookingMonthList"  resultMap="unbookedMonthMap" />
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.UnbookedMonth" id="unbookedMonthMap">
+		<result property="bookingMonth" column="BOOKING_MM" />
 	</resultMap>
 	
 	<select id="retrieveDataCheckBookingMonth" resultMap="dataCheckBookingMonthMap">
@@ -6253,6 +6259,62 @@
 	<select id="retrieveDataCheckScripts" resultMap="dataCheckScriptMap">
 		SELECT *
 		  FROM TABLE(ACIT_DATA_CHECKING_PKG.ret_data_checking_list)
+	</select>
+	
+	<update id="extractDataCheck" parameterType="java.util.Map" statementType="CALLABLE">
+		DECLARE
+			v_ext_rec NUMBER;
+		BEGIN
+			IF #{force, jdbcType=VARCHAR} <![CDATA[ = ]]> 'Y'
+	        THEN
+	            DELETE
+	              FROM ACIT_DATA_CHECKING_EXT
+	             WHERE EXTRACT_USER = #{extractUser}
+	               AND P_BOOKING_MM = #{bookingMonth}
+	               AND P_BOOKING_YEAR = #{bookingYear};
+	        END IF;
+			
+			<foreach collection="dataCheckScriptList" item="save">
+				ACIT_DATA_CHECKING_PKG.extract_data_check(
+					#{save.scriptNo},
+					#{save.scriptTitle},
+					#{save.scriptSoln},
+					#{bookingMonth},
+					#{bookingYear},
+					#{extractUser},
+					v_ext_rec,
+					#{recordsExist, mode=OUT, jdbcType=VARCHAR},
+					#{force, jdbcType=VARCHAR}
+				);
+			</foreach>
+			
+			#{extractedRecords, mode=OUT, jdbcType=INTEGER} := NVL(v_ext_rec, 0);
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.DataCheckExt" id="dataCheckExtMap">
+		<result property="extractId" column="EXTRACT_ID" />
+		<result property="scriptNo" column="SCRIPT_NO" />
+		<result property="scriptTitle" column="SCRIPT_TITLE" />
+		<result property="scriptSoln" column="SCRIPT_SOLN" />
+		<result property="distId" column="DIST_ID" />
+		<result property="histNo" column="HIST_NO" />
+		<result property="policyId" column="POLICY_ID" />
+		<result property="policyNo" column="POLICY_NO" />
+		<result property="instNo" column="INST_NO" />
+		<result property="extractUser" column="EXTRACT_USER" />
+		<result property="extractDate" column="EXTRACT_DATE" />
+		<result property="pBookingMm" column="P_BOOKING_MM" />
+		<result property="pBookingYear" column="P_BOOKING_YEAR" />
+	</resultMap>
+	
+	<select id="retrieveDataCheckExt" parameterType="java.util.Map" resultMap="dataCheckExtMap">
+		SELECT *
+		  FROM TABLE(ACIT_DATA_CHECKING_PKG.ret_data_checking_ext(
+		  	#{extractUser},
+		  	#{bookingMonth},
+			#{bookingYear}
+		  ))
 	</select>
 	
 </mapper>
