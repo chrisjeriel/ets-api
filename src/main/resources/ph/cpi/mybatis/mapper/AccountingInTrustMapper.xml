@@ -6263,6 +6263,7 @@
 	
 	<update id="extractDataCheck" parameterType="java.util.Map" statementType="CALLABLE">
 		DECLARE
+			v_extract_id NUMBER;
 			v_ext_rec NUMBER;
 		BEGIN
 			IF #{force, jdbcType=VARCHAR} <![CDATA[ = ]]> 'Y'
@@ -6276,6 +6277,7 @@
 			
 			<foreach collection="dataCheckScriptList" item="save">
 				ACIT_DATA_CHECKING_PKG.extract_data_check(
+					v_extract_id,
 					#{save.scriptNo},
 					#{save.scriptTitle},
 					#{save.scriptSoln},
