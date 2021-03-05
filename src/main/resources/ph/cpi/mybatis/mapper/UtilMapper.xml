@@ -6196,5 +6196,46 @@
                     CAST(to_timestamp(#{paramDate,jdbcType=DATE}, 'YYYY-MM-DD') AS DATE),
                     #{paramCurrency,jdbcType=VARCHAR}))
     </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.ACITR070A" id="retrieveAcitR070Map">
+    	<result property="groupTag" 		column="GROUP_TAG" />
+		<result property="qsoaId" 			column="QSOA_ID" />
+		<result property="cedingId" 		column="CEDING_ID" />
+		<result property="cedingAbbr" 		column="CEDING_ABBR" />
+		<result property="quarterEnding" 	column="QUARTER_ENDING" />
+		<result property="treatyId" 		column="TREATY_ID" />
+		<result property="treatyName" 		column="TREATY_NAME" />
+		<result property="uwYear" 			column="UW_YEAR" />
+		<result property="itemNo" 			column="ITEM_NO" />
+		<result property="itemName" 		column="ITEM_NAME" />
+		<result property="lineCd" 			column="LINE_CD" />
+		<result property="itemAmt" 			column="ITEM_AMT" />
+		<result property="extractUser" 		column="EXTRACT_USER" />
+		<result property="extractDate" 		column="EXTRACT_DATE" />
+    </resultMap>
+    
+    <select id="retrieveAcitR070a" resultMap="retrieveAcitR070Map" parameterType="java.util.Map">
+        SELECT *
+		  FROM TABLE(ACITR070A_PKG.ret_acitr070a_csv(
+		  		#{qsoaId, jdbcType=INTEGER},
+		  		#{extractUser, jdbcType=VARCHAR}
+		  	))
+    </select>
+    
+    <select id="retrieveAcitR070b" resultMap="retrieveAcitR070Map" parameterType="java.util.Map">
+        SELECT *
+		  FROM TABLE(ACITR070B_PKG.ret_acitr070b_csv(
+		  		#{qsoaId, jdbcType=INTEGER},
+		  		#{extractUser, jdbcType=VARCHAR}
+		  	))
+    </select>
+    
+    <select id="retrieveAcitR070c" resultMap="retrieveAcitR070Map" parameterType="java.util.Map">
+        SELECT *
+		  FROM TABLE(ACITR070C_PKG.ret_acitr070c_csv(
+		  		#{qsoaId, jdbcType=INTEGER},
+		  		#{extractUser, jdbcType=VARCHAR}
+		  	))
+    </select>
 	
 </mapper>

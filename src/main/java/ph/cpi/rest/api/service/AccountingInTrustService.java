@@ -168,4 +168,8 @@ public interface AccountingInTrustService {
 	public RetrieveAcitLossResDepInquiryResponse retrieveAcitLossResDepInquiry(RetrieveAcitLossResDepInquiryRequest request) throws SQLException;
 	public RetrieveAcitDataCheckScriptsResponse retrieveAcitDataCheckScripts() throws SQLException;
 	public ExtractDataCheckResponse extractDataCheck(ExtractDataCheckRequest request) throws SQLException;
+	public SaveQSOARiResponse saveQSOARi(SaveQSOARiRequest sqr) throws SQLException;
+	public RetrieveQSOAListResponse retrieveQSOARiList(RetrieveQSOAListRequest rqlr) throws SQLException;
+	public RetrieveQSOARiDtlResponse retrieveQSOARiDtl(RetrieveQSOARiDtlRequest rqdr) throws SQLException;
+	public SaveQSOARiDtlResponse saveQSOARiDtl(SaveQSOARiDtlRequest sqr) throws SQLException;
 }

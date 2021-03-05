@@ -158,4 +158,8 @@ public interface UtilDao {
 	public List<CLMR010ZBP> retrieveClmR010zbp(final HashMap<String, Object> params ) throws SQLException;
 	public List<ACSER009> retrieveAcseR009(final HashMap<String, Object> params ) throws SQLException;
 	public List<ACITR066B> retrieveAcitR066bd(final HashMap<String, Object> params ) throws SQLException;
+	
+	public List<ACITR070A> retrieveAcitR070a(final HashMap<String, Object> params ) throws SQLException;
+	public List<ACITR070A> retrieveAcitR070b(final HashMap<String, Object> params ) throws SQLException;
+	public List<ACITR070A> retrieveAcitR070c(final HashMap<String, Object> params ) throws SQLException;
 }

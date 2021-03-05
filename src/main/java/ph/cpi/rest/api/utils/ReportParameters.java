@@ -11,6 +11,7 @@ import ph.cpi.rest.api.model.utils.ACITR058;
 import ph.cpi.rest.api.model.utils.ACITR059;
 import ph.cpi.rest.api.model.utils.ACITR061;
 import ph.cpi.rest.api.model.utils.ACITR066;
+import ph.cpi.rest.api.model.utils.ACITR070;
 import ph.cpi.rest.api.model.utils.ACSER007;
 import ph.cpi.rest.api.model.utils.ACSER008;
 import ph.cpi.rest.api.model.utils.ACSER009;
@@ -78,6 +79,12 @@ public class ReportParameters {
 		
 		reportParams.put("P_REPORT_TYPE", grr.getReportType());
 		reportParams.put("p_report_type", grr.getReportType());
+		
+		reportParams.put("P_JV_DATE", grr.getJvDate());
+		reportParams.put("p_jv_date", grr.getJvDate());
+		
+		reportParams.put("P_JV_CURR_CD", grr.getJvCurrCd());
+		reportParams.put("p_jv_curr_cd", grr.getJvCurrCd());
 		
 		return reportParams;
 	}
@@ -473,5 +480,20 @@ public class ReportParameters {
 		ACSER009Params.put("reportId", param.getReportId());
 		ACSER009Params.put("reportName", param.getReportName());
 		return ACSER009Params;
+	}
+	
+	public static HashMap<String, Object> mapACITR070Params(ACITR070 param) throws ParseException {
+		HashMap<String, Object> ACITR070Params = new HashMap<String, Object>();
+		
+		ACITR070Params.put("P_REPORT_ID", param.getReportId());
+		ACITR070Params.put("p_report_id", param.getReportId());
+		ACITR070Params.put("pReportId", param.getReportId());
+		ACITR070Params.put("reportId", param.getReportId());
+		ACITR070Params.put("P_QSOA_ID", param.getQsoaId());
+		ACITR070Params.put("P_DATE", param.getQtrEnding());
+		ACITR070Params.put("P_CURR_CD", param.getCurrCd());
+		ACITR070Params.put("P_CEDING_ID", param.getCedingId());
+		
+		return ACITR070Params;
 	}
 }

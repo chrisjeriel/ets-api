@@ -943,4 +943,23 @@ public class UtilDaoImpl implements UtilDao{
 		List<ACITR066B> retrieveAcitR066bd = sqlSession.selectList("retrieveAcitR066bd",params);
 		return retrieveAcitR066bd;
 	}
+	
+	@Override
+	public List<ACITR070A> retrieveAcitR070a(HashMap<String, Object> params) throws SQLException {
+		List<ACITR070A> retrieveAcitR070a = sqlSession.selectList("retrieveAcitR070a",params);
+		return retrieveAcitR070a;
+	}
+
+	@Override
+	public List<ACITR070A> retrieveAcitR070b(HashMap<String, Object> params) throws SQLException {
+		List<ACITR070A> retrieveAcitR070b = sqlSession.selectList("retrieveAcitR070b",params);
+		return retrieveAcitR070b;
+	}
+
+	@Override
+	public List<ACITR070A> retrieveAcitR070c(HashMap<String, Object> params) throws SQLException {
+		List<ACITR070A> retrieveAcitR070c = sqlSession.selectList("retrieveAcitR070c",params);
+		return retrieveAcitR070c;
+	}
+	
 }

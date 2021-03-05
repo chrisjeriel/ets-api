@@ -3523,4 +3523,122 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return response;
 	}
+	
+	@Override
+	public SaveQSOARiResponse saveQSOARi(SaveQSOARiRequest sqr) throws SQLException {
+		SaveQSOARiResponse res = new SaveQSOARiResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		Boolean proceed = false;
+		
+		params.put("cedingId", sqr.getCedingId());
+		params.put("qtr", sqr.getQtr());
+		params.put("year", sqr.getYear());
+		params.put("user", sqr.getUser());
+		
+		res.setCedingId(sqr.getCedingId());
+		try {
+			if("N".equals(sqr.getForce())) {				
+				switch (acctITDao.validateQsoaRiQtr(params)) {
+				case "0":
+					proceed = true;
+					break;
+				case "1":
+					proceed = false;
+					res.setReturnCode(1);
+					break;
+				case "2":
+					proceed = false;
+					res.setReturnCode(2);
+					break;
+				default:
+					break;
+				}
+			} else {
+				proceed = true;
+			}
+			
+			if(proceed) {
+				acctITDao.saveQSOARi(params);
+				res.setReturnCode(-1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setReturnCode(0);
+			res.getErrorList().add(new Error("SQLException","QSOA Generation failed."));
+		}
+		
+		return res;
+	}
+	
+	@Override
+	public RetrieveQSOAListResponse retrieveQSOARiList(RetrieveQSOAListRequest rqlr) throws SQLException {
+		RetrieveQSOAListResponse rqlResponse = new RetrieveQSOAListResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("qsoaId", rqlr.getQsoaId());
+		params.put("cedingId", StringUtils.join(rqlr.getCedingId(),','));
+		params.put("fromQtr", rqlr.getFromQtr());
+		params.put("fromYear", rqlr.getFromYear());
+		params.put("toQtr", rqlr.getToQtr());
+		params.put("toYear", rqlr.getToYear());
+		
+		rqlResponse.setQsoaList(acctITDao.retrieveQSOARiList(params));
+		
+		return rqlResponse;
+	}
+
+
+	@Override
+	public RetrieveQSOARiDtlResponse retrieveQSOARiDtl(RetrieveQSOARiDtlRequest rqdr) throws SQLException {
+		RetrieveQSOARiDtlResponse res = new RetrieveQSOARiDtlResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		
+		params.put("qsoaId", rqdr.getQsoaId());
+		
+		switch (rqdr.getFrom()) {
+			case "engDtlTab":
+				res.setQsoaRiDtlList(acctITDao.retrieveQSOARiEngDtl(params));
+				break;
+			case "osClmDtlTab":
+				res.setQsoaRiDtlList(acctITDao.retrieveQSOARiOsClmDtl(params));
+				break;
+			case "engSummTab":
+				res.setQsoaRiDtlList(acctITDao.retrieveQSOARiEngSumm(params));
+				break;
+			case "trtySummTab":
+				res.setQsoaRiDtlList(acctITDao.retrieveQSOARiTrtySumm(params));
+				break;
+			default: 
+				break;
+		}
+		
+		return res;
+	}
+
+
+	@Override
+	public SaveQSOARiDtlResponse saveQSOARiDtl(SaveQSOARiDtlRequest sqr) throws SQLException {
+		SaveQSOARiDtlResponse response = new SaveQSOARiDtlResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		
+		params.put("qsoaId", sqr.getQsoaId());
+		params.put("cedingId", sqr.getCedingId());
+		params.put("currCd", sqr.getCurrCd());
+		params.put("saveEngDtlList", sqr.getSaveEngDtlList());
+		params.put("saveOsClmDtlList", sqr.getSaveOsClmDtlList());
+		params.put("saveTrtySumm", sqr.getSaveTrtySumm());
+		params.put("delTrtySumm", sqr.getDelTrtySumm());
+		
+		try {
+			acctITDao.saveQSOARiDtl(params);
+			response.setReturnCode(-1);
+		} catch (Exception e) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			e.printStackTrace();
+		}
+		
+		return response;
+	}
+	
 }

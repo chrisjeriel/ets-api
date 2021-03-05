@@ -155,6 +155,9 @@ public class RetrieveExtractToCsvResponse {
 	private List<ACSER009> listAcser009;
 	private List<ACITR066B> listAcitr066bd;
 	
+	private List<ACITR070A> listAcitr070a;
+	private List<ACITR070A> listAcitr070b;
+	private List<ACITR070A> listAcitr070c;
 	
 	public List<POLR052L> getListPolr052l() {
 		return listPolr052l;
@@ -960,6 +963,24 @@ public class RetrieveExtractToCsvResponse {
 	public void setListAcitr066bd(List<ACITR066B> listAcitr066bd) {
 		this.listAcitr066bd = listAcitr066bd;
 	}
+	public List<ACITR070A> getListAcitr070a() {
+		return listAcitr070a;
+	}
+	public void setListAcitr070a(List<ACITR070A> listAcitr070a) {
+		this.listAcitr070a = listAcitr070a;
+	}
+	public List<ACITR070A> getListAcitr070b() {
+		return listAcitr070b;
+	}
+	public void setListAcitr070b(List<ACITR070A> listAcitr070b) {
+		this.listAcitr070b = listAcitr070b;
+	}
+	public List<ACITR070A> getListAcitr070c() {
+		return listAcitr070c;
+	}
+	public void setListAcitr070c(List<ACITR070A> listAcitr070c) {
+		this.listAcitr070c = listAcitr070c;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveExtractToCsvResponse [listPolr044e=" + listPolr044e + ", listPolr044a=" + listPolr044a
@@ -1013,6 +1034,7 @@ public class RetrieveExtractToCsvResponse {
 				+ ", listAcitr066j=" + listAcitr066j + ", listPolr044sb=" + listPolr044sb + ", listPolr044sc="
 				+ listPolr044sc + ", listClmr010zbo=" + listClmr010zbo + ", listClmr010zbp=" + listClmr010zbp
 				+ ", listPolr052l=" + listPolr052l + ", listPolr052m=" + listPolr052m + ", listAcser009=" + listAcser009
-				+ ", listAcitr066bd=" + listAcitr066bd + "]";
+				+ ", listAcitr066bd=" + listAcitr066bd + ", listAcitr070a=" + listAcitr070a + ", listAcitr070b="
+				+ listAcitr070b + ", listAcitr070c=" + listAcitr070c + "]";
 	}
 }

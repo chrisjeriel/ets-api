@@ -88,6 +88,7 @@ import ph.cpi.rest.api.model.accountingintrust.QSOADtl;
 import ph.cpi.rest.api.model.accountingintrust.QSOADtlExclude;
 import ph.cpi.rest.api.model.accountingintrust.QSOAPrint;
 import ph.cpi.rest.api.model.accountingintrust.QSOARemittance;
+import ph.cpi.rest.api.model.accountingintrust.QsoaRiDtl;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.accountingintrust.RiskMgtAlloc;
 import ph.cpi.rest.api.model.accountingintrust.UnappColInquiry;
@@ -324,4 +325,12 @@ public interface AccountingInTrustDao {
 	public List<DataCheckScript> retrieveDataCheckScripts();
 	public HashMap<String,Object> extractDataCheck(final HashMap<String, Object> params ) throws SQLException;
 	public List<DataCheckExt> retrieveDataCheckExt(HashMap<String, Object> params);
+	public String validateQsoaRiQtr(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveQSOARi(final HashMap<String, Object> params) throws SQLException;
+	public List<QSOA> retrieveQSOARiList(final HashMap<String, Object> params) throws SQLException;
+	public List<QsoaRiDtl> retrieveQSOARiEngDtl(final HashMap<String, Object> params) throws SQLException;
+	public List<QsoaRiDtl> retrieveQSOARiOsClmDtl(final HashMap<String, Object> params) throws SQLException;
+	public List<QsoaRiDtl> retrieveQSOARiEngSumm(final HashMap<String, Object> params) throws SQLException;
+	public List<QsoaRiDtl> retrieveQSOARiTrtySumm(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveQSOARiDtl(final HashMap<String, Object> params) throws SQLException;
 }

@@ -20,6 +20,7 @@ public class QSOA {
 	private String updateUser;
 	private DateTime updateDate;
 	private String refNo;
+	private BigDecimal netQsoaAmt;
 	
 	public Integer getQsoaId() {
 		return qsoaId;
@@ -105,12 +106,18 @@ public class QSOA {
 	public void setRefNo(String refNo) {
 		this.refNo = refNo;
 	}
+	public BigDecimal getNetQsoaAmt() {
+		return netQsoaAmt;
+	}
+	public void setNetQsoaAmt(BigDecimal netQsoaAmt) {
+		this.netQsoaAmt = netQsoaAmt;
+	}
 	@Override
 	public String toString() {
 		return "QSOA [qsoaId=" + qsoaId + ", currCd=" + currCd + ", cedingId=" + cedingId + ", cedingName=" + cedingName
 				+ ", quarterEnding=" + quarterEnding + ", qsoaStatus=" + qsoaStatus + ", qsoaStatusDesc="
 				+ qsoaStatusDesc + ", totalDebitAmt=" + totalDebitAmt + ", totalCreditAmt=" + totalCreditAmt
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", refNo=" + refNo + "]";
+				+ ", updateDate=" + updateDate + ", refNo=" + refNo + ", netQsoaAmt=" + netQsoaAmt + "]";
 	}
 }

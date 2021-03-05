@@ -26,7 +26,7 @@ public class RetrieveExtractToCsvRequest {
 	private String dateRange;
 	private String reportType;
 	private String taxType;
-	
+	private String qsoaId;
 
 	public String getExtractUser() {
 		return extractUser;
@@ -204,6 +204,14 @@ public class RetrieveExtractToCsvRequest {
 		this.taxType = taxType;
 	}
 
+	public String getQsoaId() {
+		return qsoaId;
+	}
+
+	public void setQsoaId(String qsoaId) {
+		this.qsoaId = qsoaId;
+	}
+
 	@Override
 	public String toString() {
 		return "RetrieveExtractToCsvRequest [extractUser=" + extractUser + ", reportName=" + reportName + ", prodDate="
@@ -212,6 +220,6 @@ public class RetrieveExtractToCsvRequest {
 				+ ", toDate=" + toDate + ", incClosedTran=" + incClosedTran + ", incCancelTran=" + incCancelTran
 				+ ", tranpostDate=" + tranpostDate + ", chkDate=" + chkDate + ", bank=" + bank + ", bankAcct="
 				+ bankAcct + ", sortBy=" + sortBy + ", lineCd=" + lineCd + ", dateParam=" + dateParam + ", dateRange="
-				+ dateRange + ", reportType=" + reportType + ", taxType=" + taxType + "]";
+				+ dateRange + ", reportType=" + reportType + ", taxType=" + taxType + ", qsoaId=" + qsoaId + "]";
 	}
 }

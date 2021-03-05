@@ -1739,6 +1739,7 @@
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="refNo" 			column="REFERENCE_NO"/>
+		<result property="netQsoaAmt" 		column="NET_QSOA_AMT"/>
 	</resultMap>
 	
 	<select id="retrieveQSOAList" resultMap="qsoaMap">
@@ -6318,5 +6319,157 @@
 			#{bookingYear}
 		  ))
 	</select>
+	
+	<update id="validateQsoaRiQtr" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validateQsoaRiQtr, mode=OUT, javaType=String, jdbcType=VARCHAR} := QSOA_RI_PKG.validate_qsoa_qtr(#{cedingId, jdbcType=VARCHAR},
+																											   #{qtr, jdbcType=INTEGER},
+																										  	   #{year, jdbcType=INTEGER})
+		}
+	</update>
+	
+	<update id="saveQSOARi" parameterType="java.util.Map">
+		BEGIN
+			QSOA_RI_PKG.gen_qsoa(#{cedingId, jdbcType=VARCHAR},
+								 #{qtr, jdbcType=INTEGER},
+								 #{year, jdbcType=INTEGER},
+								 #{user, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<select id="retrieveQSOARiList" resultMap="qsoaMap">
+		SELECT * FROM TABLE(QSOA_RI_PKG.ret_comp_qsoa_list(#{qsoaId, jdbcType=INTEGER},
+														   #{cedingId, jdbcType=VARCHAR},
+														   #{fromQtr, jdbcType=INTEGER},
+														   #{fromYear, jdbcType=INTEGER},
+														   #{toQtr, jdbcType=INTEGER},
+														   #{toYear, jdbcType=INTEGER},
+														   null,null,null,null))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.QsoaRiDtl" id="qsoaRiDtlMap">
+		<result property="qsoaId" column="QSOA_ID" />
+		<result property="treatyId" column="TREATY_ID" />
+		<result property="treatyName" column="TREATY_NAME" />
+		<result property="uwYear" column="UW_YEAR" />
+		<result property="itemNo" column="ITEM_NO" />
+		<result property="itemName" column="ITEM_NAME" />
+		<result property="lineCd" column="LINE_CD" />
+		<result property="itemAmt" column="ITEM_AMT" />
+		<result property="updateTag" column="UPDATE_TAG" />
+	</resultMap>
+	
+	<select id="retrieveQSOARiEngDtl" resultMap="qsoaRiDtlMap">
+		SELECT * FROM TABLE(QSOA_RI_PKG.ret_eng_dtl(#{qsoaId, jdbcType=INTEGER}))
+	</select>
+	
+	<select id="retrieveQSOARiOsClmDtl" resultMap="qsoaRiDtlMap">
+		SELECT * FROM TABLE(QSOA_RI_PKG.ret_os_clm_dtl(#{qsoaId, jdbcType=INTEGER}))
+	</select>
+	
+	<select id="retrieveQSOARiEngSumm" resultMap="qsoaRiDtlMap">
+		SELECT * FROM TABLE(QSOA_RI_PKG.ret_eng_sum(#{qsoaId, jdbcType=INTEGER}))
+	</select>
+	
+	<select id="retrieveQSOARiTrtySumm" resultMap="qsoaRiDtlMap">
+		SELECT * FROM TABLE(QSOA_RI_PKG.ret_trty_summ(#{qsoaId, jdbcType=INTEGER}))
+	</select>
+	
+	<update id="saveQSOARiDtl" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="saveEngDtlList" item="save">
+				QSOA_RI_PKG.save_eng_dtl(
+					#{save.qsoaId, jdbcType=INTEGER},
+					#{save.treatyId, jdbcType=INTEGER},
+					#{save.uwYear, jdbcType=INTEGER},
+					#{save.lineCd, jdbcType=VARCHAR},
+					#{save.itemNo, jdbcType=INTEGER},
+					#{save.itemAmt, jdbcType=INTEGER}
+				);
+			</foreach>
+			
+			<if test="saveEngDtlList.size() > 0">
+				QSOA_RI_PKG.gen_ri_engg_summ(
+					#{qsoaId, jdbcType=INTEGER},
+					#{currCd, jdbcType=VARCHAR},
+					#{cedingId, jdbcType=VARCHAR}
+				);
+				
+				UPDATE ACIT_QSOA_RI_SUMM a
+	               SET a.item_amt = (SELECT SUM(NVL(b.item_amt))
+	                                   FROM ACIT_QSOA_RI_ENGG_SUMM b
+	                                  WHERE b.qsoa_id = a.qsoa_id
+	                                )
+	             WHERE a.qsoa_id = #{qsoaId, jdbcType=INTEGER}
+	               AND a.item_no = 1;
+	               
+	            DECLARE
+	                v_final_qsoa_amt ACIT_QSOA_RI_SUMM.ITEM_AMT%TYPE;
+	            BEGIN
+	                SELECT SUM(NVL(item_amt, 0))
+	                  INTO v_final_qsoa_amt
+	                  FROM ACIT_QSOA_RI_SUMM
+	                 WHERE qsoa_id = #{qsoaId, jdbcType=INTEGER};
+	            EXCEPTION
+	                WHEN NO_DATA_FOUND THEN
+	                    v_final_qsoa_amt := 0;
+	            END;
+	            
+	            UPDATE ACIT_QSOA
+	               SET NET_QSOA_AMT = NVL(v_final_qsoa_amt, 0),
+	                   TOTAL_CREDIT_AMT = DECODE(SIGN(v_final_qsoa_amt), 1, v_final_qsoa_amt, 0),
+	                   TOTAL_DEBIT_AMT = DECODE(SIGN(v_final_qsoa_amt), -1, v_final_qsoa_amt*-1, 0)
+	             WHERE qsoa_id = #{qsoaId, jdbcType=INTEGER};
+			</if>
+			
+			<foreach collection="saveOsClmDtlList" item="save">
+				QSOA_RI_PKG.save_os_clm_dtl(
+					#{save.qsoaId, jdbcType=INTEGER},
+					#{save.treatyId, jdbcType=INTEGER},
+					#{save.uwYear, jdbcType=INTEGER},
+					#{save.lineCd, jdbcType=VARCHAR},
+					#{save.itemAmt, jdbcType=INTEGER}
+				);
+			</foreach>
+			
+			<foreach collection="delTrtySumm" item="del">
+				QSOA_RI_PKG.delete_trty_summ(
+					#{del.qsoaId, jdbcType=INTEGER},
+					#{del.itemNo, jdbcType=INTEGER}
+				);
+			</foreach>
+			
+			<foreach collection="saveTrtySumm" item="save">
+				QSOA_RI_PKG.save_trty_summ(
+					#{save.qsoaId, jdbcType=INTEGER},
+					#{save.itemNo, jdbcType=INTEGER},
+					#{save.itemName, jdbcType=VARCHAR},
+					#{save.itemAmt, jdbcType=INTEGER}
+				);
+			</foreach>
+			
+			<if test="delTrtySumm.size() > 0 or saveTrtySumm.size() > 0">
+				DECLARE
+				    v_final_qsoa_amt ACIT_QSOA.NET_QSOA_AMT%TYPE := 0;
+				BEGIN
+					BEGIN
+				    	SELECT SUM(NVL(item_amt, 0))
+				          INTO v_final_qsoa_amt
+				          FROM ACIT_QSOA_RI_SUMM
+				         WHERE qsoa_id = #{qsoaId, jdbcType=INTEGER};
+				    EXCEPTION
+				    	WHEN NO_DATA_FOUND THEN
+				        	v_final_qsoa_amt := 0;
+				    END;
+				            
+				    UPDATE ACIT_QSOA
+				       SET NET_QSOA_AMT = NVL(v_final_qsoa_amt, 0),
+				           TOTAL_CREDIT_AMT = DECODE(SIGN(v_final_qsoa_amt), 1, v_final_qsoa_amt, 0),
+				           TOTAL_DEBIT_AMT = DECODE(SIGN(v_final_qsoa_amt), -1, v_final_qsoa_amt*-1, 0)
+				     WHERE qsoa_id = #{qsoaId, jdbcType=INTEGER};
+				END;
+			</if>
+		END;
+	</update>
 	
 </mapper>

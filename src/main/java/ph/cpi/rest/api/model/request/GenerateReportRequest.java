@@ -7,6 +7,7 @@ import ph.cpi.rest.api.model.utils.ACITR058;
 import ph.cpi.rest.api.model.utils.ACITR059;
 import ph.cpi.rest.api.model.utils.ACITR061;
 import ph.cpi.rest.api.model.utils.ACITR066;
+import ph.cpi.rest.api.model.utils.ACITR070;
 import ph.cpi.rest.api.model.utils.ACSER007;
 import ph.cpi.rest.api.model.utils.ACSER008;
 import ph.cpi.rest.api.model.utils.ACSER009;
@@ -32,6 +33,8 @@ public class GenerateReportRequest {
 	private String inclEndt;
 	private String prodDate;
 	private String reportType;
+	private String jvDate;
+	private String jvCurrCd;
 	
 	private POLR044 polr044Params;
 	private ACITR061 acitr061Params;
@@ -50,7 +53,7 @@ public class GenerateReportRequest {
 	private String memoId;
 	private Integer invoiceId;
 	private ACSER009 acser009Params;
-	
+	private ACITR070 acitr070Params;
 	
 	
 	public ACSER008 getAcser008Params() {
@@ -94,6 +97,18 @@ public class GenerateReportRequest {
 	}
 	public void setReportType(String reportType) {
 		this.reportType = reportType;
+	}
+	public String getJvDate() {
+		return jvDate;
+	}
+	public void setJvDate(String jvDate) {
+		this.jvDate = jvDate;
+	}
+	public String getJvCurrCd() {
+		return jvCurrCd;
+	}
+	public void setJvCurrCd(String jvCurrCd) {
+		this.jvCurrCd = jvCurrCd;
 	}
 	private String printerName;
 	private String pageOrientation;
@@ -298,22 +313,28 @@ public class GenerateReportRequest {
 	public void setAcser009Params(ACSER009 acser009Params) {
 		this.acser009Params = acser009Params;
 	}
+	public ACITR070 getAcitr070Params() {
+		return acitr070Params;
+	}
+	public void setAcitr070Params(ACITR070 acitr070Params) {
+		this.acitr070Params = acitr070Params;
+	}
 	@Override
 	public String toString() {
 		return "GenerateReportRequest [reportName=" + reportName + ", reportId=" + reportId + ", quoteId=" + quoteId
 				+ ", adviceNo=" + adviceNo + ", holdCovId=" + holdCovId + ", userId=" + userId + ", tranId=" + tranId
 				+ ", reqId=" + reqId + ", cedingId=" + cedingId + ", policyId=" + policyId + ", pctValue=" + pctValue
-				+ ", inclEndt=" + inclEndt + ", prodDate=" + prodDate + ", reportType=" + reportType
-				+ ", polr044Params=" + polr044Params + ", acitr061Params=" + acitr061Params + ", clmr010Params="
-				+ clmr010Params + ", acitr052Params=" + acitr052Params + ", acser060Params=" + acser060Params
-				+ ", acitr066Params=" + acitr066Params + ", acser024Params=" + acser024Params + ", acitr049Params="
-				+ acitr049Params + ", acitr050Params=" + acitr050Params + ", clmr052Params=" + clmr052Params
-				+ ", acitr058Params=" + acitr058Params + ", acser007Params=" + acser007Params + ", acitr059Params="
-				+ acitr059Params + ", acser008Params=" + acser008Params + ", memoId=" + memoId + ", invoiceId="
-				+ invoiceId + ", acser009Params=" + acser009Params + ", printerName=" + printerName
-				+ ", pageOrientation=" + pageOrientation + ", paperSize=" + paperSize + ", instNo=" + instNo
-				+ ", distId=" + distId + ", histNo=" + histNo + ", draftTag=" + draftTag + ", hundredPct=" + hundredPct
-				+ "]";
+				+ ", inclEndt=" + inclEndt + ", prodDate=" + prodDate + ", reportType=" + reportType + ", jvDate="
+				+ jvDate + ", jvCurrCd=" + jvCurrCd + ", polr044Params=" + polr044Params + ", acitr061Params="
+				+ acitr061Params + ", clmr010Params=" + clmr010Params + ", acitr052Params=" + acitr052Params
+				+ ", acser060Params=" + acser060Params + ", acitr066Params=" + acitr066Params + ", acser024Params="
+				+ acser024Params + ", acitr049Params=" + acitr049Params + ", acitr050Params=" + acitr050Params
+				+ ", clmr052Params=" + clmr052Params + ", acitr058Params=" + acitr058Params + ", acser007Params="
+				+ acser007Params + ", acitr059Params=" + acitr059Params + ", acser008Params=" + acser008Params
+				+ ", memoId=" + memoId + ", invoiceId=" + invoiceId + ", acser009Params=" + acser009Params
+				+ ", acitr070Params=" + acitr070Params + ", printerName=" + printerName + ", pageOrientation="
+				+ pageOrientation + ", paperSize=" + paperSize + ", instNo=" + instNo + ", distId=" + distId
+				+ ", histNo=" + histNo + ", draftTag=" + draftTag + ", hundredPct=" + hundredPct + "]";
 	}
 	
 }

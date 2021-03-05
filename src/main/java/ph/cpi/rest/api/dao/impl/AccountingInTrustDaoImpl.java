@@ -96,6 +96,7 @@ import ph.cpi.rest.api.model.accountingintrust.QSOADtl;
 import ph.cpi.rest.api.model.accountingintrust.QSOADtlExclude;
 import ph.cpi.rest.api.model.accountingintrust.QSOAPrint;
 import ph.cpi.rest.api.model.accountingintrust.QSOARemittance;
+import ph.cpi.rest.api.model.accountingintrust.QsoaRiDtl;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.accountingintrust.RiskMgtAlloc;
 import ph.cpi.rest.api.model.accountingintrust.UnappColInquiry;
@@ -1515,6 +1516,54 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public List<DataCheckExt> retrieveDataCheckExt(HashMap<String, Object> params) {
 		List<DataCheckExt> list = sqlSession.selectList("retrieveDataCheckExt", params);
 		return list;
+	}
+	
+	@Override
+	public String validateQsoaRiQtr(HashMap<String, Object> params) throws SQLException {
+		params.put("validateQsoaRiQtr", "");
+		sqlSession.selectOne("validateQsoaRiQtr", params);
+		
+		return (String) params.get("validateQsoaRiQtr");
+	}
+	
+	@Override
+	public Integer saveQSOARi(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("saveQSOARi", params);
+	}
+	
+	@Override
+	public List<QSOA> retrieveQSOARiList(HashMap<String, Object> params) throws SQLException {
+		List<QSOA> qsoaList = sqlSession.selectList("retrieveQSOARiList", params);
+		return qsoaList;
+	}
+
+	@Override
+	public List<QsoaRiDtl> retrieveQSOARiEngDtl(HashMap<String, Object> params) throws SQLException {
+		List<QsoaRiDtl> qsoaDtlList = sqlSession.selectList("retrieveQSOARiEngDtl", params);
+		return qsoaDtlList;
+	}
+
+	@Override
+	public List<QsoaRiDtl> retrieveQSOARiOsClmDtl(HashMap<String, Object> params) throws SQLException {
+		List<QsoaRiDtl> qsoaDtlList = sqlSession.selectList("retrieveQSOARiOsClmDtl", params);
+		return qsoaDtlList;
+	}
+
+	@Override
+	public List<QsoaRiDtl> retrieveQSOARiEngSumm(HashMap<String, Object> params) throws SQLException {
+		List<QsoaRiDtl> qsoaDtlList = sqlSession.selectList("retrieveQSOARiEngSumm", params);
+		return qsoaDtlList;
+	}
+
+	@Override
+	public List<QsoaRiDtl> retrieveQSOARiTrtySumm(HashMap<String, Object> params) throws SQLException {
+		List<QsoaRiDtl> qsoaDtlList = sqlSession.selectList("retrieveQSOARiTrtySumm", params);
+		return qsoaDtlList;
+	}
+
+	@Override
+	public Integer saveQSOARiDtl(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("saveQSOARiDtl", params);
 	}
 	
 }
