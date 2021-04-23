@@ -6396,7 +6396,7 @@
 				);
 				
 				UPDATE ACIT_QSOA_RI_SUMM a
-	               SET a.item_amt = (SELECT SUM(NVL(b.item_amt))
+	               SET a.item_amt = (SELECT SUM(NVL(b.item_amt, 0))
 	                                   FROM ACIT_QSOA_RI_ENGG_SUMM b
 	                                  WHERE b.qsoa_id = a.qsoa_id
 	                                )
@@ -6406,20 +6406,23 @@
 	            DECLARE
 	                v_final_qsoa_amt ACIT_QSOA_RI_SUMM.ITEM_AMT%TYPE;
 	            BEGIN
-	                SELECT SUM(NVL(item_amt, 0))
-	                  INTO v_final_qsoa_amt
-	                  FROM ACIT_QSOA_RI_SUMM
-	                 WHERE qsoa_id = #{qsoaId, jdbcType=INTEGER};
-	            EXCEPTION
-	                WHEN NO_DATA_FOUND THEN
-	                    v_final_qsoa_amt := 0;
-	            END;
+		            BEGIN
+		                SELECT SUM(NVL(item_amt, 0))
+		                  INTO v_final_qsoa_amt
+		                  FROM ACIT_QSOA_RI_SUMM
+		                 WHERE qsoa_id = #{qsoaId, jdbcType=INTEGER}
+		                   AND NVL(exclude_due_tag, 'N') = 'N';
+		            EXCEPTION
+		                WHEN NO_DATA_FOUND THEN
+		                    v_final_qsoa_amt := 0;
+		            END;
 	            
-	            UPDATE ACIT_QSOA
-	               SET NET_QSOA_AMT = NVL(v_final_qsoa_amt, 0),
-	                   TOTAL_CREDIT_AMT = DECODE(SIGN(v_final_qsoa_amt), 1, v_final_qsoa_amt, 0),
-	                   TOTAL_DEBIT_AMT = DECODE(SIGN(v_final_qsoa_amt), -1, v_final_qsoa_amt*-1, 0)
-	             WHERE qsoa_id = #{qsoaId, jdbcType=INTEGER};
+		            UPDATE ACIT_QSOA
+		               SET NET_QSOA_AMT = NVL(v_final_qsoa_amt, 0),
+		                   TOTAL_CREDIT_AMT = DECODE(SIGN(v_final_qsoa_amt), 1, v_final_qsoa_amt, 0),
+		                   TOTAL_DEBIT_AMT = DECODE(SIGN(v_final_qsoa_amt), -1, v_final_qsoa_amt*-1, 0)
+		             WHERE qsoa_id = #{qsoaId, jdbcType=INTEGER};
+		    	END;
 			</if>
 			
 			<foreach collection="saveOsClmDtlList" item="save">
@@ -6456,7 +6459,8 @@
 				    	SELECT SUM(NVL(item_amt, 0))
 				          INTO v_final_qsoa_amt
 				          FROM ACIT_QSOA_RI_SUMM
-				         WHERE qsoa_id = #{qsoaId, jdbcType=INTEGER};
+				         WHERE qsoa_id = #{qsoaId, jdbcType=INTEGER}
+				           AND NVL(exclude_due_tag, 'N') = 'N';
 				    EXCEPTION
 				    	WHEN NO_DATA_FOUND THEN
 				        	v_final_qsoa_amt := 0;

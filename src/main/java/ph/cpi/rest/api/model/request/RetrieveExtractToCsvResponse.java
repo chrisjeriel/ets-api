@@ -159,6 +159,13 @@ public class RetrieveExtractToCsvResponse {
 	private List<ACITR070A> listAcitr070b;
 	private List<ACITR070A> listAcitr070c;
 	
+	private List<CLMR052C> listClmr052c;
+	private List<CLMR052CA> listClmr052ca;
+	private List<CLMR052D> listClmr052d;
+	private List<CLMR052DA> listClmr052da;
+	private List<POLR044JB> listPolr044jb;
+	private List<POLR044KB> listPolr044kb;
+	
 	public List<POLR052L> getListPolr052l() {
 		return listPolr052l;
 	}
@@ -981,6 +988,42 @@ public class RetrieveExtractToCsvResponse {
 	public void setListAcitr070c(List<ACITR070A> listAcitr070c) {
 		this.listAcitr070c = listAcitr070c;
 	}
+	public List<CLMR052C> getListClmr052c() {
+		return listClmr052c;
+	}
+	public void setListClmr052c(List<CLMR052C> listClmr052c) {
+		this.listClmr052c = listClmr052c;
+	}
+	public List<CLMR052CA> getListClmr052ca() {
+		return listClmr052ca;
+	}
+	public void setListClmr052ca(List<CLMR052CA> listClmr052ca) {
+		this.listClmr052ca = listClmr052ca;
+	}
+	public List<CLMR052D> getListClmr052d() {
+		return listClmr052d;
+	}
+	public void setListClmr052d(List<CLMR052D> listClmr052d) {
+		this.listClmr052d = listClmr052d;
+	}
+	public List<CLMR052DA> getListClmr052da() {
+		return listClmr052da;
+	}
+	public void setListClmr052da(List<CLMR052DA> listClmr052da) {
+		this.listClmr052da = listClmr052da;
+	}
+	public List<POLR044JB> getListPolr044jb() {
+		return listPolr044jb;
+	}
+	public void setListPolr044jb(List<POLR044JB> listPolr044jb) {
+		this.listPolr044jb = listPolr044jb;
+	}
+	public List<POLR044KB> getListPolr044kb() {
+		return listPolr044kb;
+	}
+	public void setListPolr044kb(List<POLR044KB> listPolr044kb) {
+		this.listPolr044kb = listPolr044kb;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveExtractToCsvResponse [listPolr044e=" + listPolr044e + ", listPolr044a=" + listPolr044a
@@ -1035,6 +1078,8 @@ public class RetrieveExtractToCsvResponse {
 				+ listPolr044sc + ", listClmr010zbo=" + listClmr010zbo + ", listClmr010zbp=" + listClmr010zbp
 				+ ", listPolr052l=" + listPolr052l + ", listPolr052m=" + listPolr052m + ", listAcser009=" + listAcser009
 				+ ", listAcitr066bd=" + listAcitr066bd + ", listAcitr070a=" + listAcitr070a + ", listAcitr070b="
-				+ listAcitr070b + ", listAcitr070c=" + listAcitr070c + "]";
+				+ listAcitr070b + ", listAcitr070c=" + listAcitr070c + ", listClmr052c=" + listClmr052c
+				+ ", listClmr052ca=" + listClmr052ca + ", listClmr052d=" + listClmr052d + ", listClmr052da="
+				+ listClmr052da + ", listPolr044jb=" + listPolr044jb + ", listPolr044kb=" + listPolr044kb + "]";
 	}
 }
