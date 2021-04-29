@@ -2158,6 +2158,7 @@
 		<result property="pullWhtaxAmt" 		column="PULL_WHTAX_AMT"/>
 		<result property="pullNetValue" 		column="PULL_NET_VALUE"/>
 		<result property="incomeBalance" 		column="INCOME_BALANCE"/>
+		<result property="invtStatus" 			column="INVT_STATUS"/>
 	</resultMap>
 	
 	<select id="retrieveArInvpullout" resultMap="arInvPulloutMap">
@@ -3078,6 +3079,7 @@
 		<result property="pullWhtaxAmt" 	column="PULL_WHTAX_AMT"/>
 		<result property="pullNetValue" 	column="PULL_NET_VALUE"/>
 		<result property="incomeBalance" 	column="INCOME_BALANCE"/>
+		<result property="invtStatus" 	column="INVT_STATUS"/>
 	</resultMap>
 	
 	<select id="retrieveAcitJvAcctTrtyBal" resultMap="acctTrtyMap">
@@ -3782,6 +3784,7 @@
 		<result property="pullWhtaxAmt" 	column="PULL_WHTAX_AMT"/>
 		<result property="pullNetValue" 	column="PULL_NET_VALUE"/>
 		<result property="incomeBalance" 	column="INCOME_BALANCE"/>
+		<result property="invtStatus" 	column="INVT_STATUS"/>
 	</resultMap>
 	
 	<select id="retrieveAcitJVInvPullOut" resultMap="jvInvPullOutMap" parameterType="java.util.Map">
@@ -5660,6 +5663,7 @@
 		<result property="pullWhtaxAmt" 	column="PULL_WHTAX_AMT"/>
 		<result property="pullNetValue" 	column="PULL_NET_VALUE"/>
 		<result property="incomeBalance" 	column="INCOME_BALANCE"/>
+		<result property="invtStatus" 		column="INVT_STATUS"/>
 	</resultMap>
 	
 	<select id="retrieveMultiOffsetInvPo" resultMap="multiOffsetInvPoMap" parameterType="java.util.Map">

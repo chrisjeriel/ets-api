@@ -40,6 +40,7 @@ public class MultiOffsetInvPo {
 	private BigDecimal pullWhtaxAmt;
 	private BigDecimal pullNetValue;
 	private BigDecimal incomeBalance;
+	private String invtStatus;
 	
 	public Integer getTranId() {
 		return tranId;
@@ -239,6 +240,12 @@ public class MultiOffsetInvPo {
 	public void setIncomeBalance(BigDecimal incomeBalance) {
 		this.incomeBalance = incomeBalance;
 	}
+	public String getInvtStatus() {
+		return invtStatus;
+	}
+	public void setInvtStatus(String invtStatus) {
+		this.invtStatus = invtStatus;
+	}
 	@Override
 	public String toString() {
 		return "MultiOffsetInvPo [tranId=" + tranId + ", invtId=" + invtId + ", invtCode=" + invtCode + ", certNo="
@@ -251,6 +258,7 @@ public class MultiOffsetInvPo {
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + ", balIncome=" + balIncome + ", pullInvtAmt=" + pullInvtAmt
 				+ ", pullIncomeAmt=" + pullIncomeAmt + ", pullBankCharge=" + pullBankCharge + ", pullWhtaxAmt="
-				+ pullWhtaxAmt + ", pullNetValue=" + pullNetValue + ", incomeBalance=" + incomeBalance + "]";
+				+ pullWhtaxAmt + ", pullNetValue=" + pullNetValue + ", incomeBalance=" + incomeBalance + ", invtStatus="
+				+ invtStatus + "]";
 	}
 }

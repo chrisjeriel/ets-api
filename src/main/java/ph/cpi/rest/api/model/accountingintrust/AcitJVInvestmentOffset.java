@@ -40,6 +40,7 @@ public class AcitJVInvestmentOffset {
 	private BigDecimal pullWhtaxAmt;
 	private BigDecimal pullNetValue;
 	private BigDecimal incomeBalance;
+	private String invtStatus;
 	
 	public Integer getTranId() {
 		return tranId;
@@ -252,6 +253,12 @@ public class AcitJVInvestmentOffset {
 	public void setIncomeBalance(BigDecimal incomeBalance) {
 		this.incomeBalance = incomeBalance;
 	}
+	public String getInvtStatus() {
+		return invtStatus;
+	}
+	public void setInvtStatus(String invtStatus) {
+		this.invtStatus = invtStatus;
+	}
 	@Override
 	public String toString() {
 		return "AcitJVInvestmentOffset [tranId=" + tranId + ", quarterNo=" + quarterNo + ", itemNo=" + itemNo
@@ -265,7 +272,7 @@ public class AcitJVInvestmentOffset {
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
 				+ ", balIncome=" + balIncome + ", pullInvtAmt=" + pullInvtAmt + ", pullIncomeAmt=" + pullIncomeAmt
 				+ ", pullBankCharge=" + pullBankCharge + ", pullWhtaxAmt=" + pullWhtaxAmt + ", pullNetValue="
-				+ pullNetValue + ", incomeBalance=" + incomeBalance + "]";
+				+ pullNetValue + ", incomeBalance=" + incomeBalance + ", invtStatus=" + invtStatus + "]";
 	}
 	
 }

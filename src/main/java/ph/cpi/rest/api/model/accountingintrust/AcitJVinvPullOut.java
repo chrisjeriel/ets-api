@@ -44,6 +44,7 @@ public class AcitJVinvPullOut {
 	private BigDecimal pullWhtaxAmt;
 	private BigDecimal pullNetValue;
 	private BigDecimal incomeBalance;
+	private String invtStatus;
 	
 	public Integer getTranId() {
 		return tranId;
@@ -274,6 +275,12 @@ public class AcitJVinvPullOut {
 	public void setIncomeBalance(BigDecimal incomeBalance) {
 		this.incomeBalance = incomeBalance;
 	}
+	public String getInvtStatus() {
+		return invtStatus;
+	}
+	public void setInvtStatus(String invtStatus) {
+		this.invtStatus = invtStatus;
+	}
 	@Override
 	public String toString() {
 		return "AcitJVinvPullOut [tranId=" + tranId + ", itemNo=" + itemNo + ", invtId=" + invtId + ", invtCode="
@@ -288,7 +295,7 @@ public class AcitJVinvPullOut {
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", balIncome=" + balIncome
 				+ ", pullInvtAmt=" + pullInvtAmt + ", pullIncomeAmt=" + pullIncomeAmt + ", pullBankCharge="
 				+ pullBankCharge + ", pullWhtaxAmt=" + pullWhtaxAmt + ", pullNetValue=" + pullNetValue
-				+ ", incomeBalance=" + incomeBalance + "]";
+				+ ", incomeBalance=" + incomeBalance + ", invtStatus=" + invtStatus + "]";
 	}
 	
 }
