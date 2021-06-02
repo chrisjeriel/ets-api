@@ -684,5 +684,12 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		List<AcseTrialBal> res = sqlSession.selectList("retrieveAcseTrialBalExt", params);
 		return res;
 	}
+
+	@Override
+	public Integer checkServFeeOr(HashMap<String, Object> params) throws SQLException {
+		params.put("result", "");
+		sqlSession.selectOne("checkServFeeOr", params);
+		return Integer.parseInt((String) params.get("result"));
+	}
 	
 }

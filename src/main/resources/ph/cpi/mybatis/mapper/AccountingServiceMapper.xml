@@ -2513,4 +2513,11 @@
 											#{extractUser, jdbcType=VARCHAR}
 										  ))
 	</select>
+	
+	<update id="checkServFeeOr" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{result, mode=OUT, javaType=String, jdbcType=INTEGER} := ACSE_OR_SERVFEE_PKG.check_serv_fee_or(#{invoiceId, jdbcType=INTEGER})
+		}
+	</update>
+	
 </mapper>

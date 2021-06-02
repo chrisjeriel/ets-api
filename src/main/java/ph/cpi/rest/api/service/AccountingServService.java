@@ -231,5 +231,5 @@ public interface AccountingServService {
 	public RetrieveAcseRefNoLOVResponse retrieveAcseRefNoLOV(RetrieveAcseRefNoLOVRequest rarflr) throws SQLException;
 	public RetrieveAcseAcctEntriesExtResponse retrieveAcseAcctEntriesExt(RetrieveAcseAcctEntriesExtRequest request) throws SQLException;
 	public RetrieveAcseTrialBalExtResponse retrieveAcseTrialBalExt(String extractUser) throws SQLException;
-	
+	public Integer checkServFeeOr(Integer invoiceId) throws SQLException;
 }

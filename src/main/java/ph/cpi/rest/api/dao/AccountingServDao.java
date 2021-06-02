@@ -141,4 +141,5 @@ public interface AccountingServDao {
 	public List<RefNoLov> retrieveAcseRefNoLOV(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseAcctEntriesExt> retrieveAcseAcctEntriesExt(RetrieveAcseAcctEntriesExtRequest request) throws SQLException;
 	public List<AcseTrialBal> retrieveAcseTrialBalExt(HashMap<String, Object> params) throws SQLException;
+	public Integer checkServFeeOr(HashMap<String, Object> params) throws SQLException;
 }

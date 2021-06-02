@@ -718,4 +718,11 @@ public class AccountingServiceController {
 		logger.info("RetrieveAcseTrialBalExtRequest : " + extractUser.toString());
 		return acctServService.retrieveAcseTrialBalExt(extractUser);
 	}
+    
+    @GetMapping(path="checkServFeeOr")
+	public @ResponseBody Integer checkServFeeOr(Integer invoiceId) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseTrialBalExt");
+		logger.info("RetrieveAcseTrialBalExtRequest : " + invoiceId.toString());
+		return acctServService.checkServFeeOr(invoiceId);
+	}
 }

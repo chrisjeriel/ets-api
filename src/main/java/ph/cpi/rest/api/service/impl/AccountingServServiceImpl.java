@@ -1844,4 +1844,12 @@ public class AccountingServServiceImpl implements AccountingServService{
 		response.setList(acctServDao.retrieveAcseTrialBalExt(params));
 		return response;
 	}
+
+	@Override
+	public Integer checkServFeeOr(Integer invoiceId) throws SQLException {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("invoiceId", invoiceId);
+		Integer response = acctServDao.checkServFeeOr(params);
+		return response;
+	}
 }
