@@ -10,6 +10,8 @@ public class AcctServFeeTotals {
 	private BigDecimal totalWhTaxAmt;
 	private BigDecimal totalDue;
 	private Integer mreInvoiceId;
+	private BigDecimal totalNetSfeeAmt;
+	private BigDecimal offsetAmt;
 	
 	public BigDecimal getTotalSfeeAmt() {
 		return totalSfeeAmt;
@@ -47,10 +49,22 @@ public class AcctServFeeTotals {
 	public void setMreInvoiceId(Integer mreInvoiceId) {
 		this.mreInvoiceId = mreInvoiceId;
 	}
+	public BigDecimal getTotalNetSfeeAmt() {
+		return totalNetSfeeAmt;
+	}
+	public void setTotalNetSfeeAmt(BigDecimal totalNetSfeeAmt) {
+		this.totalNetSfeeAmt = totalNetSfeeAmt;
+	}
+	public BigDecimal getOffsetAmt() {
+		return offsetAmt;
+	}
+	public void setOffsetAmt(BigDecimal offsetAmt) {
+		this.offsetAmt = offsetAmt;
+	}
 	@Override
 	public String toString() {
 		return "AcctServFeeTotals [totalSfeeAmt=" + totalSfeeAmt + ", mreSfeeAmt=" + mreSfeeAmt + ", totalVatAmt="
 				+ totalVatAmt + ", totalWhTaxAmt=" + totalWhTaxAmt + ", totalDue=" + totalDue + ", mreInvoiceId="
-				+ mreInvoiceId + "]";
+				+ mreInvoiceId + ", totalNetSfeeAmt=" + totalNetSfeeAmt + ", offsetAmt=" + offsetAmt + "]";
 	}
 }

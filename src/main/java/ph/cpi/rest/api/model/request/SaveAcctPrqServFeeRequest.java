@@ -22,6 +22,7 @@ public class SaveAcctPrqServFeeRequest {
 	private Integer pwMmTo;
 	private Integer pwYearTo;
 	private List<SaveAcctServFeeCedant> saveAcctServFeeCedantList;
+	private BigDecimal offsetAmt;
 	
 	public String getForce() {
 		return force;
@@ -125,6 +126,12 @@ public class SaveAcctPrqServFeeRequest {
 	public void setSaveAcctServFeeCedantList(List<SaveAcctServFeeCedant> saveAcctServFeeCedantList) {
 		this.saveAcctServFeeCedantList = saveAcctServFeeCedantList;
 	}
+	public BigDecimal getOffsetAmt() {
+		return offsetAmt;
+	}
+	public void setOffsetAmt(BigDecimal offsetAmt) {
+		this.offsetAmt = offsetAmt;
+	}
 	@Override
 	public String toString() {
 		return "SaveAcctPrqServFeeRequest [force=" + force + ", reqId=" + reqId + ", quarter=" + quarter + ", year="
@@ -132,7 +139,7 @@ public class SaveAcctPrqServFeeRequest {
 				+ ", currRt=" + currRt + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
 				+ updateUser + ", updateDate=" + updateDate + ", pwMmFrom=" + pwMmFrom + ", pwYearFrom=" + pwYearFrom
 				+ ", pwMmTo=" + pwMmTo + ", pwYearTo=" + pwYearTo + ", saveAcctServFeeCedantList="
-				+ saveAcctServFeeCedantList + "]";
+				+ saveAcctServFeeCedantList + ", offsetAmt=" + offsetAmt + "]";
 	}
 }
 

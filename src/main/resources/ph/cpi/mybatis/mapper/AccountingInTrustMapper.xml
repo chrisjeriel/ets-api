@@ -1989,6 +1989,8 @@
 		<result property="totalWhTaxAmt" 	column="TOTAL_WHTAX_AMT"/>
 		<result property="totalDue" 		column="TOTAL_DUE"/>
 		<result property="mreInvoiceId" 	column="MRE_INVOICE_ID"/>
+		<result property="totalNetSfeeAmt" 	column="TOTAL_NET_SFEE"/>
+		<result property="offsetAmt" 		column="OFFSET_AMT"/>
 	</resultMap>
 	
 	<select id="retrieveAcitServFeeMainGnrt" resultMap="servFeeDistMap" parameterType="java.util.Map">
@@ -3276,7 +3278,8 @@
 				#{pwMmFrom},
 				#{pwYearFrom},
 				#{pwMmTo},
-				#{pwYearTo}
+				#{pwYearTo},
+				#{offsetAmt, jdbcType=INTEGER}
 			);
 			
 			<foreach collection="saveAcctServFeeCedantList" item="save">

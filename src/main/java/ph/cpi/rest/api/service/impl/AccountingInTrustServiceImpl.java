@@ -1549,6 +1549,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("pwMmTo", sapsfr.getPwMmTo());
 		params.put("pwYearTo", sapsfr.getPwYearTo());
 		params.put("saveAcctServFeeCedantList", sapsfr.getSaveAcctServFeeCedantList());
+		params.put("offsetAmt", sapsfr.getOffsetAmt());
 		
 		try {
 			response.setReturnCode(acctITDao.saveAcctPrqServFee(params));
