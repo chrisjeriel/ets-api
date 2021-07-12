@@ -1111,7 +1111,7 @@
 			</foreach>
 			
 			<foreach collection="saveOverdueAccts" item="save">
-				ACIT_JOURNAL_VOUCHER_PKG.save_overdue_int(#{save.tranId}, #{itemNo,jdbcType=INTEGER}, #{save.policyId}, #{save.instNo}, 
+				ACIT_JOURNAL_VOUCHER_PKG.save_overdue_int(#{save.tranId}, #{save.itemNo,jdbcType=INTEGER}, #{save.policyId}, #{save.instNo}, 
 														  CAST(to_timestamp(#{save.dueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 														  #{save.actualOverdueDays}, #{save.overdueDaysWInt}, #{save.interestRate}, #{save.autoTag}, 
 														  #{save.currCd}, #{save.currRate}, #{save.balanceAmt}, #{save.overdueInt}, #{save.localAmt}, 
